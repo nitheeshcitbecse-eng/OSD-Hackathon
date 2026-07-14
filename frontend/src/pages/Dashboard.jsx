@@ -1,6 +1,4 @@
 import {
-  Menu,
-  Bell,
   ShieldCheck,
   Camera,
   Home,
@@ -9,120 +7,324 @@ import {
   Activity,
   Siren,
   Video,
+  Users,
+  Phone,
+  UserCircle,
+  Bell,
+  Shield,
+  LogOut,
 } from "lucide-react";
 
 function Dashboard({ setScreen }) {
   return (
-    <div className="mobile-screen dashboard-screen">
-      <header className="dashboard-header">
-        <Menu size={24} />
-        <h3>My Home⌄</h3>
-        <Bell
-          size={23}
-          onClick={() => setScreen("alerts")}
-        />
-      </header>
+    <div className="website-dashboard">
 
-      <main className="dashboard-content">
-        <div className="secure-card">
+      <aside className="website-sidebar">
+
+        <div className="website-logo">
+          <Shield size={35} />
           <div>
-            <h2>Home Secure</h2>
-            <p>All systems are active</p>
+            <h2>AI GUARDIAN</h2>
+            <span>Smart Security</span>
           </div>
-
-          <ShieldCheck size={45} />
         </div>
 
-        <div className="status-card">
+        <div className="sidebar-menu">
+
+          <button className="sidebar-active">
+            <Home />
+            Dashboard
+          </button>
+
+          <button onClick={() => setScreen("live")}>
+            <Video />
+            Live Camera
+          </button>
+
+          <button onClick={() => setScreen("alerts")}>
+            <Bell />
+            Alerts
+          </button>
+
+          <button onClick={() => setScreen("history")}>
+            <History />
+            Activity History
+          </button>
+
+          <button onClick={() => setScreen("family")}>
+            <Users />
+            Family Faces
+          </button>
+
+          <button onClick={() => setScreen("contacts")}>
+            <Phone />
+            Emergency Contacts
+          </button>
+
+          <button onClick={() => setScreen("settings")}>
+            <Settings />
+            Settings
+          </button>
+
+        </div>
+
+        <div className="sidebar-profile">
+
+          <UserCircle size={40} />
+
           <div>
-            <span>AI Status</span>
-            <p>Running</p>
+            <strong>Nitheesh S</strong>
+            <span>Premium User</span>
           </div>
 
-          <Activity size={70} />
+          <LogOut
+            size={19}
+            onClick={() => setScreen("login")}
+          />
+
         </div>
 
-        <div
-          className="camera-card"
-          onClick={() => setScreen("live")}
-        >
-          <Camera size={35} />
+      </aside>
+
+
+      <section className="website-main">
+
+        <header className="website-header">
 
           <div>
-            <span>Connected Cameras</span>
-            <p>3 Cameras Active</p>
+            <h1>Security Dashboard</h1>
+            <p>
+              Monitor and protect your home with AI Guardian
+            </p>
           </div>
 
-          <span>›</span>
-        </div>
+          <div className="header-actions">
 
-        <div className="recent-title">
-          <h3>Recent Alerts</h3>
+            <button
+              className="notification-button"
+              onClick={() => setScreen("critical")}
+            >
+              <Bell size={21} />
+              <span></span>
+            </button>
 
-          <span onClick={() => setScreen("alerts")}>
-            View All
-          </span>
-        </div>
+            <button
+              className="profile-button"
+              onClick={() => setScreen("profile")}
+            >
+              <UserCircle size={23} />
+              Nitheesh S
+            </button>
 
-        <div className="alert-card">
-          <div className="alert-image">👤</div>
-
-          <div className="alert-info">
-            <h4>Unknown Person</h4>
-            <p>Front Door</p>
           </div>
 
-          <span className="time">10:42 PM</span>
-          <span className="high">High</span>
-        </div>
+        </header>
 
-        <div className="alert-card">
-          <div className="alert-image">📷</div>
 
-          <div className="alert-info">
-            <h4>Motion Detected</h4>
-            <p>Backyard</p>
+        <main className="website-content">
+
+          <div className="website-status-grid">
+
+            <div className="web-status-card secure-web-card">
+
+              <div>
+                <span>SECURITY STATUS</span>
+                <h2>Home Secure</h2>
+                <p>All systems are active</p>
+              </div>
+
+              <ShieldCheck size={55} />
+
+            </div>
+
+
+            <div className="web-status-card">
+
+              <div>
+                <span>AI STATUS</span>
+                <h2 className="green-text">
+                  Running
+                </h2>
+                <p>Real-time monitoring active</p>
+              </div>
+
+              <Activity
+                className="green-text"
+                size={55}
+              />
+
+            </div>
+
+
+            <div
+              className="web-status-card clickable"
+              onClick={() => setScreen("live")}
+            >
+
+              <div>
+                <span>CONNECTED CAMERAS</span>
+                <h2>3 Cameras</h2>
+                <p>All cameras active</p>
+              </div>
+
+              <Camera
+                className="blue-text"
+                size={55}
+              />
+
+            </div>
+
           </div>
 
-          <span className="time">08:15 PM</span>
-          <span className="low">Low</span>
-        </div>
 
-        <button
-          className="emergency-btn"
-          onClick={() => setScreen("emergency")}
-        >
-          <Siren size={21} />
-          Emergency
-        </button>
-      </main>
+          <div className="website-dashboard-grid">
 
-      <nav className="bottom-nav">
-        <div className="nav-active">
-          <Home />
-          <span>Home</span>
-        </div>
+            <section className="web-panel">
 
-        <div onClick={() => setScreen("live")}>
-          <Video />
-          <span>Live</span>
-        </div>
+              <div className="web-panel-header">
 
-        <div onClick={() => setScreen("alerts")}>
-          <Bell />
-          <span>Alerts</span>
-        </div>
+                <div>
+                  <h2>Recent Alerts</h2>
+                  <p>
+                    Latest security activities detected
+                  </p>
+                </div>
 
-        <div>
-          <History />
-          <span>History</span>
-        </div>
+                <button
+                  onClick={() => setScreen("alerts")}
+                >
+                  View All
+                </button>
 
-        <div>
-          <Settings />
-          <span>Settings</span>
-        </div>
-      </nav>
+              </div>
+
+
+              <div
+                className="web-alert-row"
+                onClick={() => setScreen("critical")}
+              >
+
+                <div className="web-alert-image">
+                  👤
+                </div>
+
+                <div className="web-alert-info">
+                  <h3>Unknown Person</h3>
+                  <p>Front Door</p>
+                </div>
+
+                <span>Today, 10:42 PM</span>
+
+                <strong className="web-high">
+                  High
+                </strong>
+
+              </div>
+
+
+              <div className="web-alert-row">
+
+                <div className="web-alert-image">
+                  🌙
+                </div>
+
+                <div className="web-alert-info">
+                  <h3>Suspicious Activity</h3>
+                  <p>Backyard</p>
+                </div>
+
+                <span>Today, 09:15 PM</span>
+
+                <strong className="web-medium">
+                  Medium
+                </strong>
+
+              </div>
+
+
+              <div className="web-alert-row">
+
+                <div className="web-alert-image">
+                  📷
+                </div>
+
+                <div className="web-alert-info">
+                  <h3>Motion Detected</h3>
+                  <p>Living Room</p>
+                </div>
+
+                <span>Today, 08:45 PM</span>
+
+                <strong className="web-low">
+                  Low
+                </strong>
+
+              </div>
+
+            </section>
+
+
+            <section className="web-panel quick-panel">
+
+              <div className="web-panel-header">
+
+                <div>
+                  <h2>Quick Actions</h2>
+                  <p>Access important security controls</p>
+                </div>
+
+              </div>
+
+
+              <button
+                onClick={() => setScreen("live")}
+              >
+                <Video />
+                <div>
+                  <strong>Live Camera</strong>
+                  <span>View real-time footage</span>
+                </div>
+              </button>
+
+
+              <button
+                onClick={() => setScreen("family")}
+              >
+                <Users />
+                <div>
+                  <strong>Family Faces</strong>
+                  <span>Manage authorized people</span>
+                </div>
+              </button>
+
+
+              <button
+                onClick={() => setScreen("contacts")}
+              >
+                <Phone />
+                <div>
+                  <strong>Emergency Contacts</strong>
+                  <span>Manage emergency contacts</span>
+                </div>
+              </button>
+
+
+              <button
+                className="web-emergency-button"
+                onClick={() => setScreen("emergency")}
+              >
+                <Siren />
+                Emergency
+              </button>
+
+            </section>
+
+          </div>
+
+        </main>
+
+      </section>
+
     </div>
   );
 }
