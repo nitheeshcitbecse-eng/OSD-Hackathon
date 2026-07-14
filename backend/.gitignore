@@ -1,6 +1,14 @@
 # Dependencies
 node_modules/
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
 # Environment variables (contains private API keys & database URIs)
 .env
 .env.local
@@ -13,3 +21,4 @@ npm-debug.log*
 # IDE/Editor folders
 .vscode/
 .idea/
+

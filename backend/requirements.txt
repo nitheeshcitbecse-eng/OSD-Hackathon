@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+motor
+pydantic
+pydantic-settings
+python-dotenv
+python-socketio
+PyJWT
+bcrypt
+twilio
+passlib
+email-validator
