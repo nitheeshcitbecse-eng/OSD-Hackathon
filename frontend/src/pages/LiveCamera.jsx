@@ -1,114 +1,190 @@
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
-  Mic,
-  Volume2,
   Camera,
-  Square,
-  Maximize,
-  Circle,
+  Check,
+  ShieldAlert,
 } from "lucide-react";
 
-function LiveCamera({ setScreen }) {
-  return (
-    <div className="web-page">
-      <header className="inner-web-header">
-        <div className="inner-title">
-          <button onClick={() => setScreen("dashboard")}>
-            <ArrowLeft size={20} />
-          </button>
+function LiveCamera({ setScreen, goBack }) {
+  const [recognitionState, setRecognitionState] =
+    useState("known");
 
-          <div>
-            <h1>Live Camera</h1>
-            <p>Monitor your cameras in real time</p>
-          </div>
+  useEffect(() => {
+    const recognitionTimer = setInterval(() => {
+      setRecognitionState((currentState) =>
+        currentState === "known"
+          ? "unknown"
+          : "known"
+      );
+    }, 4500);
+
+    return () => clearInterval(recognitionTimer);
+  }, []);
+
+  const isKnown = recognitionState === "known";
+
+  return (
+    <div className="iris-live-page">
+      <header className="iris-live-header">
+        <button
+          className="iris-back-button"
+          onClick={goBack}
+        >
+          <ArrowLeft size={21} />
+        </button>
+
+        <div>
+          <h1>Live Recognition</h1>
+          <p>Front Door Camera • AI Monitoring</p>
         </div>
 
-        <span className="web-live-badge">
-          <Circle size={9} fill="currentColor" />
+        <div className="iris-live-status">
+          <span></span>
           LIVE
-        </span>
+        </div>
       </header>
 
-      <main className="inner-web-content">
-        <div className="camera-selector">
-          <button className="camera-selector-active">
-            Front Door
-          </button>
+      <main className="iris-camera-workspace">
+        <section className="iris-camera-feed">
+          <div className="iris-camera-placeholder">
+            <Camera size={70} />
 
-          <button>Backyard</button>
-          <button>Living Room</button>
-        </div>
+            <p>FRONT DOOR CAMERA</p>
 
-        <section className="desktop-camera-panel">
-          <div className="desktop-camera-header">
-            <div>
-              <h2>Front Door Camera</h2>
-              <p>CAM-001 · Online</p>
-            </div>
-
-            <button>
-              <Maximize size={19} />
-            </button>
+            <span>
+              AI visual recognition stream active
+            </span>
           </div>
 
-          <div className="desktop-camera-feed">
-            <div className="camera-date">
-              2026-07-14&nbsp;&nbsp; 19:42:18
+          <div
+            className={`recognition-box ${
+              isKnown
+                ? "recognition-known"
+                : "recognition-unknown"
+            }`}
+          >
+            <span className="recognition-corner corner-one"></span>
+            <span className="recognition-corner corner-two"></span>
+            <span className="recognition-corner corner-three"></span>
+            <span className="recognition-corner corner-four"></span>
+
+            <div className="recognition-scan-line"></div>
+
+            <div className="iris-recognition-eye">
+              <div className="recognition-iris">
+                <div className="recognition-pupil"></div>
+              </div>
             </div>
 
-            <div className="web-detection-box">
-              <span>Unknown Person · 96%</span>
+            <div className="recognition-result">
+              {isKnown ? (
+                <div className="known-check-animation">
+                  <Check size={23} strokeWidth={3} />
+                </div>
+              ) : (
+                <div className="unknown-alert-animation">
+                  <ShieldAlert size={21} />
+                </div>
+              )}
 
-              <div className="web-person">
-                👤
+              <div>
+                <strong>
+                  {isKnown
+                    ? "KNOWN PERSON"
+                    : "UNKNOWN PERSON"}
+                </strong>
+
+                <small>
+                  {isKnown
+                    ? "Identity verified"
+                    : "Identity not recognized"}
+                </small>
               </div>
             </div>
           </div>
 
-          <div className="desktop-camera-controls">
-            <div className="camera-control-group">
-              <button>
-                <Mic size={20} />
-                Microphone
-              </button>
+          <div className="camera-hud camera-hud-left">
+            <span>IRIS://VISION_01</span>
+            <span>FACE MATRIX ACTIVE</span>
+            <span>DEPTH SCAN ENABLED</span>
+          </div>
 
-              <button>
-                <Volume2 size={20} />
-                Speaker
-              </button>
+          <div className="camera-hud camera-hud-right">
+            <span>
+              CONFIDENCE {isKnown ? "98.4%" : "76.2%"}
+            </span>
+
+            <span>
+              STATUS {isKnown ? "VERIFIED" : "ANALYZING"}
+            </span>
+          </div>
+        </section>
+
+        <aside className="iris-recognition-panel">
+          <span className="recognition-panel-label">
+            RECOGNITION ENGINE
+          </span>
+
+          <h2>
+            {isKnown
+              ? "Identity Verified"
+              : "Unrecognized Identity"}
+          </h2>
+
+          <p>
+            {isKnown
+              ? "IRIS matched the detected face with an authorized family profile."
+              : "IRIS could not match the detected face with an authorized identity."}
+          </p>
+
+          <div
+            className={`iris-state-card ${
+              isKnown
+                ? "state-card-known"
+                : "state-card-unknown"
+            }`}
+          >
+            {isKnown ? (
+              <Check size={27} />
+            ) : (
+              <ShieldAlert size={27} />
+            )}
+
+            <div>
+              <strong>
+                {isKnown ? "AUTHORIZED" : "CAUTION"}
+              </strong>
+
+              <span>
+                {isKnown
+                  ? "Access identity recognized"
+                  : "Enhanced monitoring active"}
+              </span>
+            </div>
+          </div>
+
+          <div className="recognition-data">
+            <div>
+              <span>Camera</span>
+              <strong>Front Door</strong>
             </div>
 
-            <button className="desktop-record-button">
-              <Square size={17} fill="currentColor" />
-              Record
-            </button>
+            <div>
+              <span>AI Confidence</span>
+              <strong>
+                {isKnown ? "98.4%" : "76.2%"}
+              </strong>
+            </div>
 
-            <button>
-              <Camera size={20} />
-              Snapshot
-            </button>
+            <div>
+              <span>Recognition</span>
+              <strong>
+                {isKnown ? "0.42 sec" : "Analyzing"}
+              </strong>
+            </div>
           </div>
-        </section>
-
-        <section className="camera-info-grid">
-          <div className="camera-info-card">
-            <span>CAMERA STATUS</span>
-            <strong className="green-text">Online</strong>
-            <p>Connected and monitoring</p>
-          </div>
-
-          <div className="camera-info-card">
-            <span>AI DETECTION</span>
-            <strong className="green-text">Active</strong>
-            <p>Real-time detection enabled</p>
-          </div>
-
-          <div className="camera-info-card">
-            <span>VIDEO QUALITY</span>
-            <strong>1080p HD</strong>
-            <p>High quality streaming</p>
-          </div>
-        </section>
+        </aside>
       </main>
     </div>
   );

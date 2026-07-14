@@ -24,8 +24,8 @@ function Dashboard({ setScreen }) {
         <div className="website-logo">
           <Shield size={35} />
           <div>
-            <h2>AI GUARDIAN</h2>
-            <span>Smart Security</span>
+            <h2>IRIS</h2>
+            <span>Intelligent Recognition & Intrusion System</span>
           </div>
         </div>
 

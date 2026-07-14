@@ -3048,3 +3048,3972 @@ body.light-theme .auth-tabs .active-tab {
   background: #dcecff;
   color: #172033;
 }
+/* =========================
+   IRIS ANIMATED SPLASH
+========================= */
+
+.iris-splash {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 25% 30%, #063b52 0%, transparent 25%),
+    radial-gradient(circle at 75% 75%, #042d50 0%, transparent 28%),
+    #020b14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.iris-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(48, 159, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(48, 159, 255, 0.05) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  animation: gridMove 15s linear infinite;
+}
+
+.iris-orb {
+  position: absolute;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 65% 35%,
+    #46eaff,
+    #008bd6 35%,
+    #003e73 65%,
+    transparent 72%
+  );
+
+  filter: blur(1px);
+
+  box-shadow:
+    0 0 50px rgba(0, 199, 255, 0.5),
+    0 0 120px rgba(0, 140, 255, 0.25);
+}
+
+.iris-orb-one {
+  width: 350px;
+  height: 350px;
+
+  left: 12%;
+  top: 12%;
+
+  animation: floatOrbOne 7s ease-in-out infinite;
+}
+
+.iris-orb-two {
+  width: 230px;
+  height: 230px;
+
+  right: 14%;
+  bottom: 5%;
+
+  animation: floatOrbTwo 8s ease-in-out infinite;
+}
+
+.iris-splash-content {
+  position: relative;
+  z-index: 5;
+
+  text-align: center;
+
+  animation: irisContentEnter 1.2s ease forwards;
+}
+
+.iris-logo-animation {
+  width: 150px;
+  height: 150px;
+
+  position: relative;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #43dfff;
+
+  border-radius: 50%;
+
+  background: rgba(0, 132, 210, 0.12);
+
+  box-shadow:
+    0 0 30px rgba(0, 199, 255, 0.4),
+    inset 0 0 25px rgba(0, 199, 255, 0.15);
+
+  animation: logoFloat 4s ease-in-out infinite;
+}
+
+.iris-logo-animation svg {
+  filter: drop-shadow(
+    0 0 12px rgba(54, 222, 255, 0.9)
+  );
+
+  animation: eyePulse 2s ease-in-out infinite;
+}
+
+.iris-logo-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(57, 215, 255, 0.5);
+}
+
+.ring-one {
+  width: 175px;
+  height: 175px;
+
+  animation: ringPulse 2.5s ease-out infinite;
+}
+
+.ring-two {
+  width: 205px;
+  height: 205px;
+
+  animation: ringPulse 2.5s ease-out infinite 1.2s;
+}
+
+.iris-splash-content h1 {
+  margin: 35px 0 8px;
+
+  font-size: 45px;
+
+  letter-spacing: 12px;
+
+  color: white;
+
+  text-shadow:
+    0 0 15px rgba(57, 215, 255, 0.7);
+
+  animation: titleGlow 2.5s ease-in-out infinite;
+}
+
+.iris-splash-content p {
+  color: #55dfff;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+}
+
+.iris-loading {
+  width: 280px;
+  height: 4px;
+
+  margin: 35px auto 15px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #09283c;
+}
+
+.iris-loading span {
+  display: block;
+
+  width: 45%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #39dfff,
+    #168dff,
+    transparent
+  );
+
+  box-shadow:
+    0 0 15px #39dfff;
+
+  animation: irisLoading 1.7s linear infinite;
+}
+
+.iris-splash-content small {
+  color: #668696;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+/* ANIMATIONS */
+
+@keyframes floatOrbOne {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+
+  50% {
+    transform:
+      translateY(-35px)
+      translateX(20px)
+      scale(1.08);
+  }
+}
+
+@keyframes floatOrbTwo {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  50% {
+    transform:
+      translateY(-45px)
+      translateX(-25px);
+  }
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes eyePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes irisLoading {
+  from {
+    transform: translateX(-120%);
+  }
+
+  to {
+    transform: translateX(320%);
+  }
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px rgba(57, 215, 255, 0.4);
+  }
+
+  50% {
+    text-shadow:
+      0 0 25px rgba(57, 215, 255, 1),
+      0 0 45px rgba(22, 141, 255, 0.5);
+  }
+}
+
+@keyframes gridMove {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 70px 70px;
+  }
+}
+
+@keyframes irisContentEnter {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* ==================================
+   IRIS CINEMATIC INTRO
+================================== */
+
+.iris-cinematic {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 126, 170, 0.12),
+      transparent 38%
+    ),
+    #01070d;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.6s ease,
+    filter 0.6s ease,
+    transform 0.6s ease;
+}
+
+.cinematic-exit {
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(1.04);
+}
+
+.cyber-grid {
+  position: absolute;
+  inset: -100px;
+
+  background-image:
+    linear-gradient(
+      rgba(41, 199, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(41, 199, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+
+  transform: perspective(500px) rotateX(55deg) scale(1.8);
+
+  animation: cyberGridMove 10s linear infinite;
+}
+
+.scan-beam {
+  position: absolute;
+  z-index: 2;
+
+  width: 100%;
+  height: 180px;
+
+  top: -200px;
+
+  background: linear-gradient(
+    transparent,
+    rgba(36, 210, 255, 0.035),
+    rgba(36, 210, 255, 0.08),
+    transparent
+  );
+
+  animation: screenScan 3.5s linear infinite;
+}
+
+.corner {
+  position: absolute;
+
+  width: 50px;
+  height: 50px;
+
+  opacity: 0.3;
+}
+
+.corner-tl {
+  top: 35px;
+  left: 35px;
+
+  border-top: 1px solid #35dfff;
+  border-left: 1px solid #35dfff;
+}
+
+.corner-tr {
+  top: 35px;
+  right: 35px;
+
+  border-top: 1px solid #35dfff;
+  border-right: 1px solid #35dfff;
+}
+
+.corner-bl {
+  bottom: 35px;
+  left: 35px;
+
+  border-bottom: 1px solid #35dfff;
+  border-left: 1px solid #35dfff;
+}
+
+.corner-br {
+  bottom: 35px;
+  right: 35px;
+
+  border-bottom: 1px solid #35dfff;
+  border-right: 1px solid #35dfff;
+}
+
+.system-code {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  color: rgba(72, 215, 255, 0.35);
+
+  font-family: monospace;
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  animation: codeAppear 1.5s ease forwards;
+}
+
+.code-left {
+  left: 55px;
+  top: 50%;
+}
+
+.code-right {
+  right: 55px;
+  top: 50%;
+
+  text-align: right;
+}
+
+.iris-cinematic-content {
+  position: relative;
+  z-index: 5;
+
+  text-align: center;
+}
+
+.iris-scanner {
+  width: 230px;
+  height: 230px;
+
+  position: relative;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanner-orbit {
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+.orbit-one {
+  width: 225px;
+  height: 225px;
+
+  border:
+    1px dashed
+    rgba(62, 215, 255, 0.3);
+
+  animation: orbitRotate 12s linear infinite;
+}
+
+.orbit-one span {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #44dcff;
+
+  box-shadow: 0 0 10px #44dcff;
+}
+
+.orbit-one span:nth-child(1) {
+  top: -2px;
+  left: 50%;
+}
+
+.orbit-one span:nth-child(2) {
+  bottom: 18px;
+  left: 20px;
+}
+
+.orbit-one span:nth-child(3) {
+  right: 4px;
+  top: 65%;
+}
+
+.orbit-two {
+  width: 185px;
+  height: 185px;
+
+  border-top: 2px solid #36dfff;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid #167eaa;
+  border-left: 1px solid transparent;
+
+  animation: orbitReverse 5s linear infinite;
+}
+
+.orbit-three {
+  width: 150px;
+  height: 150px;
+
+  border:
+    1px solid
+    rgba(55, 218, 255, 0.2);
+
+  box-shadow:
+    0 0 35px rgba(41, 201, 255, 0.08),
+    inset 0 0 35px rgba(41, 201, 255, 0.06);
+
+  animation: corePulse 2.5s ease-in-out infinite;
+}
+
+.iris-core {
+  width: 115px;
+  height: 115px;
+
+  position: relative;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(53, 218, 255, 0.12),
+      rgba(0, 68, 98, 0.08)
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: coreReveal 1.2s ease forwards;
+}
+
+.iris-eye {
+  width: 82px;
+  height: 45px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border:
+    2px solid
+    rgba(70, 224, 255, 0.85);
+
+  border-radius:
+    80% 10% 80% 10%;
+
+  transform: rotate(45deg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 0 15px rgba(55, 220, 255, 0.35);
+
+  animation: eyeOpen 1.4s ease forwards;
+}
+
+.iris-pupil {
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #00131d 20%,
+      #33c9f1 24%,
+      #087da5 55%,
+      #02131b 70%
+    );
+
+  box-shadow:
+    0 0 15px #28cfff;
+
+  animation: pupilScan 2.8s ease-in-out infinite;
+}
+
+.recognition-point {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #5ce4ff;
+
+  box-shadow: 0 0 8px #5ce4ff;
+
+  animation: recognitionBlink 1.5s infinite;
+}
+
+.point-one {
+  top: 10px;
+  left: 25px;
+}
+
+.point-two {
+  right: 10px;
+  top: 40px;
+
+  animation-delay: 0.4s;
+}
+
+.point-three {
+  bottom: 15px;
+  left: 40px;
+
+  animation-delay: 0.8s;
+}
+
+.point-four {
+  left: 5px;
+  top: 55px;
+
+  animation-delay: 1.1s;
+}
+
+.scanner-line {
+  position: absolute;
+
+  width: 150px;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #4de3ff,
+    transparent
+  );
+
+  box-shadow:
+    0 0 10px #4de3ff;
+
+  animation: irisScanLine 2.4s ease-in-out infinite;
+}
+
+.system-online {
+  margin-top: 15px;
+
+  color: #6bdcf4;
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  opacity: 0;
+
+  animation:
+    textReveal 0.5s ease forwards 1.1s;
+}
+
+.online-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #32e990;
+
+  box-shadow:
+    0 0 8px #32e990;
+
+  animation: onlineBlink 1.5s infinite;
+}
+
+.iris-word {
+  margin: 18px 0 8px;
+
+  font-size: 50px;
+
+  letter-spacing: 13px;
+
+  padding-left: 13px;
+}
+
+.iris-word span {
+  display: inline-block;
+
+  opacity: 0;
+
+  transform: translateY(15px);
+
+  text-shadow:
+    0 0 18px rgba(67, 216, 255, 0.35);
+
+  animation:
+    irisLetterReveal
+    0.5s ease forwards;
+}
+
+.iris-word span:nth-child(1) {
+  animation-delay: 1.2s;
+}
+
+.iris-word span:nth-child(2) {
+  animation-delay: 1.35s;
+}
+
+.iris-word span:nth-child(3) {
+  animation-delay: 1.5s;
+}
+
+.iris-word span:nth-child(4) {
+  animation-delay: 1.65s;
+}
+
+.iris-full-name {
+  color: #718d9a;
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  opacity: 0;
+
+  animation:
+    textReveal
+    0.8s ease forwards 2s;
+}
+
+.iris-full-name b {
+  color: #3bd8ff;
+}
+
+.initialization-bar {
+  width: 260px;
+  height: 2px;
+
+  margin: 28px auto 8px;
+
+  overflow: hidden;
+
+  background: rgba(55, 149, 180, 0.15);
+}
+
+.initialization-progress {
+  width: 0;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #087da5,
+    #48ddff
+  );
+
+  box-shadow:
+    0 0 8px #48ddff;
+
+  animation:
+    initializeSystem
+    2.2s ease forwards 0.8s;
+}
+
+.initialization-text {
+  display: flex;
+  justify-content: space-between;
+
+  color: #4f6b77;
+
+  font-family: monospace;
+  font-size: 7px;
+
+  letter-spacing: 1px;
+}
+
+/* ANIMATION */
+
+@keyframes orbitRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes corePulse {
+  50% {
+    transform: scale(1.04);
+
+    border-color:
+      rgba(55, 218, 255, 0.5);
+  }
+}
+
+@keyframes coreReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes eyeOpen {
+  from {
+    transform:
+      rotate(45deg)
+      scaleY(0);
+  }
+
+  to {
+    transform:
+      rotate(45deg)
+      scaleY(1);
+  }
+}
+
+@keyframes pupilScan {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  30% {
+    transform: translate(6px, -3px);
+  }
+
+  65% {
+    transform: translate(-6px, 3px);
+  }
+}
+
+@keyframes irisScanLine {
+  0%,
+  100% {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+}
+
+@keyframes recognitionBlink {
+  50% {
+    opacity: 0.2;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes onlineBlink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes irisLetterReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes initializeSystem {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes screenScan {
+  from {
+    top: -200px;
+  }
+
+  to {
+    top: 100%;
+  }
+}
+
+@keyframes cyberGridMove {
+  to {
+    background-position: 0 60px;
+  }
+}
+
+@keyframes codeAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .system-code {
+    display: none;
+  }
+
+  .iris-scanner {
+    transform: scale(0.85);
+  }
+
+  .iris-word {
+    font-size: 42px;
+  }
+
+  .iris-full-name {
+    padding: 0 25px;
+    line-height: 2;
+  }
+}
+/* IRIS SPLASH FONT SIZE FIX */
+
+.iris-word {
+  font-size: 78px;
+  font-weight: 700;
+  letter-spacing: 18px;
+  padding-left: 18px;
+}
+
+.iris-full-name {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 4px;
+}
+
+.system-online {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+
+.initialization-text {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.system-code {
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.code-left,
+.code-right {
+  letter-spacing: 1.5px;
+}
+
+@media (max-width: 700px) {
+  .iris-word {
+    font-size: 55px;
+    letter-spacing: 12px;
+    padding-left: 12px;
+  }
+
+  .iris-full-name {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .system-online {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+}
+/* ==================================
+   IRIS WEBSITE LOGIN
+================================== */
+
+.iris-login-page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: #01070d;
+  color: white;
+  animation: loginPageEnter 0.9s ease forwards;
+}
+
+.login-cyber-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(48, 205, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(48, 205, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 65px 65px;
+}
+
+.login-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  pointer-events: none;
+}
+
+.login-glow-one {
+  width: 420px;
+  height: 420px;
+  left: 5%;
+  top: 15%;
+  background: rgba(0, 170, 220, 0.11);
+  animation: loginGlowMove 10s ease-in-out infinite;
+}
+
+.login-glow-two {
+  width: 300px;
+  height: 300px;
+  right: 8%;
+  bottom: 5%;
+  background: rgba(0, 91, 190, 0.1);
+}
+
+.iris-login-brand,
+.iris-login-section {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.iris-login-brand {
+  padding: 70px 9%;
+}
+
+.login-brand-content {
+  max-width: 580px;
+  animation: loginBrandEnter 1s ease forwards;
+}
+
+.login-iris-symbol {
+  width: 115px;
+  height: 115px;
+  position: relative;
+  border-radius: 50%;
+  color: #4bddff;
+  background: rgba(0, 158, 210, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 30px rgba(57, 214, 255, 0.13);
+}
+
+.login-iris-symbol svg {
+  filter:
+    drop-shadow(
+      0 0 10px rgba(57, 214, 255, 0.55)
+    );
+}
+
+.login-symbol-ring {
+  position: absolute;
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  border:
+    1px dashed
+    rgba(75, 221, 255, 0.25);
+  animation: orbitRotate 15s linear infinite;
+}
+
+.login-brand-content h1 {
+  margin: 35px 0 8px;
+  font-size: 75px;
+  letter-spacing: 17px;
+  line-height: 1;
+}
+
+.login-brand-content h2 {
+  margin: 20px 0;
+  color: #5ad7f4;
+  font-size: 27px;
+  line-height: 1.4;
+}
+
+.login-brand-content > p {
+  max-width: 500px;
+  color: #788e9a;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.login-features {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.login-features div {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #9babb5;
+  font-size: 13px;
+}
+
+.login-features svg {
+  color: #46d7f7;
+}
+
+.iris-login-section {
+  justify-content: center;
+  padding: 50px;
+  border-left:
+    1px solid
+    rgba(51, 205, 255, 0.08);
+}
+
+.iris-login-card {
+  width: 100%;
+  max-width: 470px;
+  padding: 45px;
+  border:
+    1px solid
+    rgba(56, 191, 230, 0.16);
+  border-radius: 15px;
+  background: rgba(5, 18, 29, 0.82);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.35);
+  animation: loginCardEnter 1s ease forwards;
+}
+
+.login-card-heading > span {
+  color: #45d8f8;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.login-card-heading h2 {
+  margin: 14px 0 8px;
+  font-size: 32px;
+}
+
+.login-card-heading p {
+  margin: 0 0 35px;
+  color: #748996;
+  font-size: 12px;
+}
+
+.iris-login-card form > label {
+  display: block;
+  margin: 20px 0 9px;
+  color: #a8b6bf;
+  font-size: 11px;
+}
+
+.iris-login-card input[type="email"],
+.iris-password-field {
+  width: 100%;
+  height: 52px;
+  border:
+    1px solid
+    rgba(78, 151, 180, 0.25);
+  border-radius: 7px;
+  background: rgba(3, 13, 21, 0.75);
+}
+
+.iris-login-card input[type="email"] {
+  padding: 0 15px;
+  color: white;
+  outline: none;
+}
+
+.iris-password-field {
+  display: flex;
+  align-items: center;
+}
+
+.iris-password-field input {
+  flex: 1;
+  height: 100%;
+  padding: 0 15px;
+  border: none;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.iris-password-field button {
+  width: 50px;
+  border: none;
+  background: transparent;
+  color: #718894;
+}
+
+.iris-login-card input:focus,
+.iris-password-field:focus-within {
+  border-color: #37cce9;
+  box-shadow:
+    0 0 0 3px rgba(55, 204, 233, 0.07);
+}
+
+.login-options {
+  margin: 20px 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.remember-login {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #7f929e;
+  font-size: 11px;
+}
+
+.login-options button {
+  border: none;
+  background: transparent;
+  color: #45d8f8;
+  font-size: 11px;
+}
+
+.iris-login-button {
+  width: 100%;
+  height: 53px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 7px;
+  background:
+    linear-gradient(
+      90deg,
+      #087da5,
+      #13a9cf
+    );
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.iris-login-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.button-scan {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 35%;
+  height: 100%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.18),
+      transparent
+    );
+  transform: skewX(-20deg);
+  animation: loginButtonScan 3s infinite;
+}
+
+.login-security-status {
+  margin-top: 28px;
+  color: #58717e;
+  font-size: 8px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-security-status span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #35df8a;
+  box-shadow: 0 0 8px #35df8a;
+  animation: onlineBlink 1.5s infinite;
+}
+
+@keyframes loginPageEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loginBrandEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes loginCardEnter {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes loginGlowMove {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(30px, -20px);
+  }
+}
+
+@keyframes loginButtonScan {
+  0% {
+    left: -50%;
+  }
+
+  60%,
+  100% {
+    left: 130%;
+  }
+}
+
+@media (max-width: 850px) {
+  .iris-login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .iris-login-brand {
+    display: none;
+  }
+
+  .iris-login-section {
+    padding: 25px;
+    border-left: none;
+  }
+
+  .iris-login-card {
+    padding: 30px;
+  }
+}
+/* ==================================
+   IRIS DASHBOARD MOTION
+================================== */
+
+/* PAGE ENTRY */
+
+.website-dashboard {
+  animation: irisDashboardEnter 0.7s ease forwards;
+}
+
+.website-sidebar {
+  animation: irisSidebarEnter 0.65s ease forwards;
+}
+
+.website-header {
+  animation: irisHeaderEnter 0.7s ease forwards;
+}
+
+/* STATUS CARD ENTRY */
+
+.website-status-grid .web-status-card {
+  opacity: 0;
+  transform: translateY(20px);
+
+  animation: irisCardEnter 0.6s ease forwards;
+}
+
+.website-status-grid .web-status-card:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.website-status-grid .web-status-card:nth-child(2) {
+  animation-delay: 0.28s;
+}
+
+.website-status-grid .web-status-card:nth-child(3) {
+  animation-delay: 0.41s;
+}
+
+/* STATUS CARD HOVER */
+
+.web-status-card {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.web-status-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(55, 205, 245, 0.35);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.25),
+    0 0 25px rgba(40, 190, 230, 0.05);
+}
+
+.web-status-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 45%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(74, 220, 255, 0.04),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.7s ease;
+}
+
+.web-status-card:hover::before {
+  left: 140%;
+}
+
+/* AI STATUS ICON */
+
+.web-status-card .green-text {
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+
+.web-status-card:hover svg.green-text {
+  transform: scale(1.06);
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(39, 211, 120, 0.35)
+    );
+}
+
+/* CAMERA ICON */
+
+.web-status-card:hover svg.blue-text {
+  transform: scale(1.06);
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(50, 159, 255, 0.4)
+    );
+}
+
+/* DASHBOARD PANELS */
+
+.website-dashboard-grid .web-panel {
+  opacity: 0;
+  transform: translateY(20px);
+
+  animation: irisPanelEnter 0.7s ease forwards;
+}
+
+.website-dashboard-grid .web-panel:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.website-dashboard-grid .web-panel:nth-child(2) {
+  animation-delay: 0.65s;
+}
+
+.web-panel {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.web-panel:hover {
+  border-color:
+    rgba(55, 205, 245, 0.22);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* ALERT ROW */
+
+.web-alert-row {
+  position: relative;
+
+  transition:
+    background 0.25s ease,
+    padding-left 0.25s ease;
+}
+
+.web-alert-row:hover {
+  background:
+    rgba(41, 171, 215, 0.035);
+
+  padding-left: 8px;
+}
+
+.web-alert-image {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.web-alert-row:hover .web-alert-image {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 0 15px rgba(49, 187, 230, 0.08);
+}
+
+/* QUICK ACTIONS */
+
+.quick-panel > button {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.quick-panel > button:hover {
+  transform: translateX(5px);
+
+  background: #0b2031;
+
+  border-color:
+    rgba(55, 205, 245, 0.28);
+}
+
+.quick-panel > button svg {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.quick-panel > button:hover svg {
+  transform: scale(1.1);
+
+  filter:
+    drop-shadow(
+      0 0 6px rgba(50, 159, 255, 0.4)
+    );
+}
+
+/* EMERGENCY BUTTON */
+
+.quick-panel .web-emergency-button {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.quick-panel .web-emergency-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(230, 45, 40, 0.22);
+}
+
+/* SIDEBAR */
+
+.sidebar-menu button {
+  position: relative;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.sidebar-menu button:hover {
+  transform: translateX(4px);
+}
+
+.sidebar-menu button svg {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.sidebar-menu button:hover svg {
+  transform: scale(1.08);
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(50, 159, 255, 0.35)
+    );
+}
+
+/* NOTIFICATION BUTTON */
+
+.notification-button {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.notification-button:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(55, 205, 245, 0.4);
+}
+
+.notification-button span {
+  animation: irisNotificationPulse 2s ease-in-out infinite;
+}
+
+/* PROFILE BUTTON */
+
+.profile-button {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.profile-button:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(55, 205, 245, 0.35);
+}
+
+/* ANIMATIONS */
+
+@keyframes irisDashboardEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes irisSidebarEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes irisHeaderEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes irisCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes irisPanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes irisNotificationPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(255, 57, 57, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(255, 57, 57, 0.12);
+  }
+}
+
+/* LIGHT MODE HOVER FIX */
+
+body.light-theme .quick-panel > button:hover {
+  background: #eef6fc;
+}
+
+body.light-theme .web-alert-row:hover {
+  background: #f3f8fc;
+}
+
+body.light-theme .web-status-card:hover,
+body.light-theme .web-panel:hover {
+  box-shadow:
+    0 15px 35px rgba(28, 51, 75, 0.08);
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .website-dashboard,
+  .website-sidebar,
+  .website-header,
+  .web-status-card,
+  .web-panel {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+/* ==================================
+   IRIS ADVANCED DASHBOARD ANIMATION
+================================== */
+
+/* MOVING AMBIENT BACKGROUND */
+
+.website-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.website-main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  margin-left: 260px;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(0, 190, 255, 0.07),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(0, 95, 255, 0.06),
+      transparent 28%
+    );
+
+  animation: irisAmbientMove 10s ease-in-out infinite;
+}
+
+.website-header,
+.website-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* DIGITAL SCANNING LINE */
+
+.website-main::after {
+  content: "";
+  position: fixed;
+  left: 260px;
+  right: 0;
+  top: -100px;
+  height: 120px;
+  pointer-events: none;
+  z-index: 3;
+
+  background: linear-gradient(
+    transparent,
+    rgba(59, 218, 255, 0.025),
+    rgba(59, 218, 255, 0.07),
+    transparent
+  );
+
+  animation: dashboardScan 7s linear infinite;
+}
+
+/* IRIS LOGO ANIMATION */
+
+.website-logo > svg {
+  animation: irisLogoFloat 3s ease-in-out infinite;
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(50, 159, 255, 0.45)
+    );
+}
+
+.website-logo {
+  position: relative;
+}
+
+.website-logo::after {
+  content: "";
+  position: absolute;
+
+  width: 48px;
+  height: 48px;
+
+  left: 1px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(50, 159, 255, 0.15);
+
+  animation: irisLogoRing 2.5s ease-out infinite;
+}
+
+/* HOME SECURE ICON */
+
+.secure-web-card svg {
+  animation: shieldBreathing 2.5s ease-in-out infinite;
+
+  filter:
+    drop-shadow(
+      0 0 10px rgba(48, 230, 140, 0.3)
+    );
+}
+
+/* HOME SECURE BACKGROUND PULSE */
+
+.secure-web-card {
+  animation:
+    irisCardEnter 0.6s ease forwards 0.15s,
+    secureCardGlow 4s ease-in-out infinite 1s !important;
+}
+
+/* AI STATUS ECG EFFECT */
+
+.web-status-card:nth-child(2) svg {
+  animation: aiHeartbeat 2.2s ease-in-out infinite;
+}
+
+/* CAMERA STATUS */
+
+.web-status-card:nth-child(3) svg {
+  animation: cameraDetect 3s ease-in-out infinite;
+}
+
+/* CAMERA DETECTION CORNER EFFECT */
+
+.web-status-card:nth-child(3)::after {
+  content: "";
+
+  position: absolute;
+
+  width: 22px;
+  height: 22px;
+
+  top: 15px;
+  right: 15px;
+
+  border-top: 1px solid rgba(50, 159, 255, 0.4);
+  border-right: 1px solid rgba(50, 159, 255, 0.4);
+
+  animation: detectionCorner 2s ease-in-out infinite;
+}
+
+/* ALERT IMAGE SCAN */
+
+.web-alert-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.web-alert-image::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100%;
+  height: 1px;
+
+  left: 0;
+  top: 0;
+
+  background: #42d9ff;
+
+  box-shadow:
+    0 0 6px #42d9ff;
+
+  opacity: 0.45;
+
+  animation: alertImageScan 2.5s ease-in-out infinite;
+}
+
+/* HIGH ALERT PULSE */
+
+.web-high {
+  animation: highAlertPulse 1.8s ease-in-out infinite;
+}
+
+/* MEDIUM ALERT */
+
+.web-medium {
+  animation: mediumAlertPulse 2.5s ease-in-out infinite;
+}
+
+/* LIVE CAMERA QUICK ACTION */
+
+.quick-panel > button:first-of-type svg {
+  animation: liveCameraPulse 2s ease-in-out infinite;
+}
+
+/* FAMILY ICON */
+
+.quick-panel > button:nth-of-type(2) svg {
+  animation: familyIconMove 3s ease-in-out infinite;
+}
+
+/* PHONE ICON */
+
+.quick-panel > button:nth-of-type(3) svg {
+  animation: phoneShake 5s ease-in-out infinite;
+}
+
+/* EMERGENCY BUTTON ENERGY */
+
+.web-emergency-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.web-emergency-button::before {
+  content: "";
+
+  position: absolute;
+
+  width: 40%;
+  height: 200%;
+
+  top: -50%;
+  left: -70%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+
+  transform: rotate(20deg);
+
+  animation: emergencyEnergy 3s ease-in-out infinite;
+}
+
+/* SIDEBAR ACTIVE INDICATOR */
+
+.sidebar-active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  width: 3px;
+  height: 65%;
+
+  border-radius: 5px;
+
+  background: #3bd9ff;
+
+  box-shadow:
+    0 0 10px #3bd9ff;
+
+  animation: sidebarIndicator 2s ease-in-out infinite;
+}
+
+/* SIDEBAR ICON IDLE MOTION */
+
+.sidebar-menu button:nth-child(2) svg {
+  animation: sidebarCamera 4s ease-in-out infinite;
+}
+
+.sidebar-menu button:nth-child(3) svg {
+  animation: sidebarBell 4s ease-in-out infinite 1s;
+}
+
+/* PROFILE ONLINE EFFECT */
+
+.profile-button svg {
+  animation: profilePulse 3s ease-in-out infinite;
+}
+
+/* CARD BORDER ENERGY */
+
+.web-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.web-panel::before {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 1px;
+
+  top: 0;
+  left: -100px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #3bd9ff,
+    transparent
+  );
+
+  opacity: 0.5;
+
+  animation: panelBorderScan 5s linear infinite;
+}
+
+/* =========================
+   ANIMATION KEYFRAMES
+========================= */
+
+@keyframes irisAmbientMove {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform:
+      translate(40px, -30px)
+      scale(1.08);
+  }
+}
+
+@keyframes dashboardScan {
+  from {
+    top: -120px;
+  }
+
+  to {
+    top: 100vh;
+  }
+}
+
+@keyframes irisLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-4px) rotate(4deg);
+  }
+}
+
+@keyframes irisLogoRing {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes shieldBreathing {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.09);
+    opacity: 1;
+  }
+}
+
+@keyframes secureCardGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(39, 211, 120, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(39, 211, 120, 0.1);
+  }
+}
+
+@keyframes aiHeartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.12);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.08);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cameraDetect {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  30% {
+    transform: rotate(-5deg) scale(1.04);
+  }
+
+  60% {
+    transform: rotate(5deg) scale(1.04);
+  }
+}
+
+@keyframes detectionCorner {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes alertImageScan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes highAlertPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(255, 75, 75, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 12px rgba(255, 75, 75, 0.28);
+  }
+}
+
+@keyframes mediumAlertPulse {
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes liveCameraPulse {
+  0%,
+  100% {
+    filter:
+      drop-shadow(
+        0 0 0 rgba(50, 159, 255, 0)
+      );
+  }
+
+  50% {
+    filter:
+      drop-shadow(
+        0 0 7px rgba(50, 159, 255, 0.65)
+      );
+  }
+}
+
+@keyframes familyIconMove {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes phoneShake {
+  0%,
+  88%,
+  100% {
+    transform: rotate(0);
+  }
+
+  90% {
+    transform: rotate(10deg);
+  }
+
+  92% {
+    transform: rotate(-10deg);
+  }
+
+  94% {
+    transform: rotate(8deg);
+  }
+
+  96% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes emergencyEnergy {
+  0% {
+    left: -70%;
+  }
+
+  45%,
+  100% {
+    left: 150%;
+  }
+}
+
+@keyframes sidebarIndicator {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+
+    box-shadow:
+      0 0 15px #3bd9ff;
+  }
+}
+
+@keyframes sidebarCamera {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+@keyframes sidebarBell {
+  0%,
+  90%,
+  100% {
+    transform: rotate(0);
+  }
+
+  93% {
+    transform: rotate(10deg);
+  }
+
+  96% {
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes profilePulse {
+  50% {
+    opacity: 0.65;
+  }
+}
+
+@keyframes panelBorderScan {
+  from {
+    left: -100px;
+  }
+
+  to {
+    left: calc(100% + 100px);
+  }
+}
+
+/* LIGHT THEME */
+
+body.light-theme .website-main::before {
+  opacity: 0.35;
+}
+
+body.light-theme .website-main::after {
+  opacity: 0.3;
+}
+
+/* MOBILE SIDEBAR OFFSET */
+
+@media (max-width: 900px) {
+  .website-main::before {
+    margin-left: 75px;
+  }
+
+  .website-main::after {
+    left: 75px;
+  }
+}
+
+@media (max-width: 600px) {
+  .website-main::before {
+    margin-left: 0;
+  }
+
+  .website-main::after {
+    left: 0;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .website-main::before,
+  .website-main::after,
+  .website-logo > svg,
+  .website-logo::after,
+  .secure-web-card svg,
+  .web-status-card:nth-child(2) svg,
+  .web-status-card:nth-child(3) svg,
+  .web-alert-image::after,
+  .web-high,
+  .web-medium,
+  .quick-panel svg,
+  .web-emergency-button::before,
+  .sidebar-active::after,
+  .web-panel::before {
+    animation: none !important;
+  }
+}
+/* ==================================
+   IRIS SUBTLE LIGHT MODE BACKGROUND
+================================== */
+
+body.light-theme {
+  background: #eef4f8;
+  color: #172033;
+}
+
+body.light-theme .app-container,
+body.light-theme .web-page,
+body.light-theme .website-dashboard {
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(42, 174, 210, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(73, 120, 210, 0.06),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #edf5f8,
+      #f4f7fa 45%,
+      #edf3f7
+    );
+
+  color: #172033;
+}
+
+body.light-theme .website-main {
+  background: transparent;
+}
+
+/* SUBTLE MOVING LIGHT MODE GLOW */
+
+body.light-theme .website-main::before {
+  opacity: 1;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(25, 173, 210, 0.09),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(49, 111, 210, 0.07),
+      transparent 28%
+    );
+
+  animation: irisLightAmbient 12s ease-in-out infinite;
+}
+
+/* SOFT GLASS CARDS */
+
+body.light-theme .web-status-card,
+body.light-theme .web-panel,
+body.light-theme .desktop-camera-panel,
+body.light-theme .alerts-table-panel,
+body.light-theme .history-table-panel,
+body.light-theme .camera-info-card,
+body.light-theme .summary-card,
+body.light-theme .family-web-card,
+body.light-theme .contacts-web-panel,
+body.light-theme .settings-web-rows,
+body.light-theme .profile-settings-panel,
+body.light-theme .profile-web-card,
+body.light-theme .emergency-main-panel,
+body.light-theme .emergency-actions-panel {
+  background: rgba(255, 255, 255, 0.78);
+
+  border-color: rgba(156, 184, 200, 0.35);
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 8px 28px rgba(48, 84, 105, 0.05);
+}
+
+/* HEADER + SIDEBAR */
+
+body.light-theme .website-sidebar,
+body.light-theme .website-header,
+body.light-theme .inner-web-header {
+  background: rgba(247, 251, 253, 0.88);
+
+  border-color: rgba(156, 184, 200, 0.35);
+
+  backdrop-filter: blur(14px);
+}
+
+/* VERY SUBTLE GRID */
+
+body.light-theme .website-main {
+  background-image:
+    linear-gradient(
+      rgba(28, 133, 170, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(28, 133, 170, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 65px 65px;
+}
+
+/* LIGHT MODE SCANNER */
+
+body.light-theme .website-main::after {
+  opacity: 0.22;
+
+  background: linear-gradient(
+    transparent,
+    rgba(20, 172, 210, 0.03),
+    rgba(20, 172, 210, 0.08),
+    transparent
+  );
+}
+
+/* SOFT BLUE HOVER */
+
+body.light-theme .web-status-card:hover,
+body.light-theme .web-panel:hover {
+  border-color: rgba(31, 167, 205, 0.28);
+
+  box-shadow:
+    0 14px 35px rgba(48, 84, 105, 0.08),
+    0 0 25px rgba(31, 167, 205, 0.04);
+}
+
+/* LIGHT AMBIENT ANIMATION */
+
+@keyframes irisLightAmbient {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform:
+      translate(25px, -20px)
+      scale(1.05);
+  }
+}
+/* =========================================
+   IRIS SECURITY ENVIRONMENT
+========================================= */
+
+.security-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(0, 174, 220, 0.07),
+      transparent 38%
+    ),
+    #01070d;
+}
+
+/* ANIMATED SCANNING GRID */
+
+.security-grid-animation {
+  position: absolute;
+  inset: -100px;
+
+  background-image:
+    linear-gradient(
+      rgba(55, 211, 245, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(55, 211, 245, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 65px 65px;
+
+  animation: securityGridMove 14s linear infinite;
+}
+
+/* RADIAL SECURITY GLOW */
+
+.security-radial-pulse {
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  left: 50%;
+  top: 50%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 199, 240, 0.1),
+      rgba(0, 100, 180, 0.035) 45%,
+      transparent 70%
+    );
+
+  transform: translate(-50%, -50%);
+
+  animation: securityRadialPulse 6s ease-in-out infinite;
+}
+
+/* PARTICLE NETWORK */
+
+.security-particles {
+  position: absolute;
+  inset: 0;
+
+  animation: networkFloat 10s ease-in-out infinite;
+}
+
+.security-particle {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: rgba(71, 218, 255, 0.65);
+
+  box-shadow:
+    0 0 8px rgba(71, 218, 255, 0.65);
+
+  animation: particlePulse 3s ease-in-out infinite;
+}
+
+.particle-1 { left: 8%; top: 17%; }
+.particle-2 { left: 24%; top: 30%; }
+.particle-3 { left: 41%; top: 14%; }
+.particle-4 { left: 59%; top: 32%; }
+.particle-5 { left: 82%; top: 17%; }
+
+.particle-6 { left: 13%; top: 64%; }
+.particle-7 { left: 30%; top: 50%; }
+.particle-8 { left: 47%; top: 69%; }
+.particle-9 { left: 69%; top: 53%; }
+.particle-10 { left: 90%; top: 71%; }
+
+.particle-11 { left: 17%; top: 42%; }
+.particle-12 { left: 36%; top: 79%; }
+.particle-13 { left: 53%; top: 44%; }
+.particle-14 { left: 75%; top: 81%; }
+.particle-15 { left: 87%; top: 38%; }
+
+.particle-16 { left: 5%; top: 82%; }
+.particle-17 { left: 33%; top: 20%; }
+.particle-18 { left: 64%; top: 14%; }
+.particle-19 { left: 77%; top: 59%; }
+.particle-20 { left: 95%; top: 27%; }
+
+.particle-21 { left: 22%; top: 88%; }
+.particle-22 { left: 48%; top: 25%; }
+.particle-23 { left: 62%; top: 84%; }
+.particle-24 { left: 84%; top: 45%; }
+
+.security-particle:nth-child(2n) {
+  animation-delay: 1s;
+}
+
+.security-particle:nth-child(3n) {
+  animation-delay: 2s;
+}
+
+.security-network-lines {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.13;
+}
+
+.security-network-lines line {
+  stroke: #42d9ff;
+  stroke-width: 0.7;
+
+  stroke-dasharray: 6 10;
+
+  animation: networkLineMove 7s linear infinite;
+}
+
+/* CCTV STATIC TEXTURE */
+
+.security-noise {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.035;
+
+  background-image:
+    repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      rgba(255, 255, 255, 0.8) 1px,
+      transparent 2px
+    );
+
+  background-size: 5px 5px;
+
+  animation: securityNoise 0.25s steps(2) infinite;
+}
+
+/* RADAR */
+
+.security-radar {
+  position: absolute;
+
+  width: 190px;
+  height: 190px;
+
+  right: 45px;
+  bottom: 35px;
+
+  border:
+    1px solid
+    rgba(55, 216, 245, 0.2);
+
+  border-radius: 50%;
+
+  opacity: 0.55;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 0 30px rgba(0, 180, 220, 0.05);
+}
+
+.radar-circle {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  border:
+    1px solid
+    rgba(55, 216, 245, 0.15);
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.radar-circle-one {
+  width: 65%;
+  height: 65%;
+}
+
+.radar-circle-two {
+  width: 32%;
+  height: 32%;
+}
+
+.radar-cross {
+  position: absolute;
+
+  background:
+    rgba(55, 216, 245, 0.12);
+}
+
+.radar-horizontal {
+  width: 100%;
+  height: 1px;
+
+  top: 50%;
+}
+
+.radar-vertical {
+  width: 1px;
+  height: 100%;
+
+  left: 50%;
+}
+
+.radar-sweep {
+  position: absolute;
+
+  width: 50%;
+  height: 50%;
+
+  left: 50%;
+  top: 0;
+
+  transform-origin: bottom left;
+
+  background:
+    conic-gradient(
+      from 270deg,
+      rgba(53, 221, 255, 0.22),
+      transparent 38%
+    );
+
+  animation: radarRotate 4s linear infinite;
+}
+
+.radar-target {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #4de1ff;
+
+  box-shadow:
+    0 0 10px #4de1ff;
+
+  animation: radarTarget 2s ease-in-out infinite;
+}
+
+.target-one {
+  left: 28%;
+  top: 31%;
+}
+
+.target-two {
+  right: 24%;
+  top: 52%;
+
+  animation-delay: 0.7s;
+}
+
+.target-three {
+  left: 45%;
+  bottom: 20%;
+
+  animation-delay: 1.3s;
+}
+
+/* KEYFRAMES */
+
+@keyframes securityGridMove {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 65px 65px;
+  }
+}
+
+@keyframes securityRadialPulse {
+  0%,
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(0.9);
+
+    opacity: 0.5;
+  }
+
+  50% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.12);
+
+    opacity: 1;
+  }
+}
+
+@keyframes networkFloat {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(12px, -10px);
+  }
+}
+
+@keyframes particlePulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes networkLineMove {
+  to {
+    stroke-dashoffset: -50;
+  }
+}
+
+@keyframes securityNoise {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(1px, -1px);
+  }
+
+  50% {
+    transform: translate(-1px, 1px);
+  }
+
+  75% {
+    transform: translate(1px, 1px);
+  }
+}
+
+@keyframes radarRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radarTarget {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+
+    box-shadow:
+      0 0 15px #4de1ff;
+  }
+}
+
+/* LIGHT MODE */
+
+body.light-theme .security-background {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(16, 165, 205, 0.08),
+      transparent 40%
+    ),
+    #edf4f8;
+}
+
+body.light-theme .security-grid-animation {
+  opacity: 0.5;
+}
+
+body.light-theme .security-particles {
+  opacity: 0.5;
+}
+
+body.light-theme .security-radar {
+  opacity: 0.3;
+}
+
+body.light-theme .security-noise {
+  opacity: 0.012;
+}
+
+@media (max-width: 700px) {
+  .security-radar {
+    width: 120px;
+    height: 120px;
+
+    right: 15px;
+    bottom: 15px;
+  }
+}
+/* =========================================
+   IRIS LOGIN + SIGNUP
+========================================= */
+
+.iris-login-brand,
+.iris-login-section {
+  z-index: 5;
+}
+
+.iris-auth-tabs {
+  width: 100%;
+
+  margin-bottom: 30px;
+
+  padding: 4px;
+
+  border:
+    1px solid
+    rgba(57, 204, 240, 0.15);
+
+  border-radius: 8px;
+
+  background:
+    rgba(1, 10, 17, 0.65);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.iris-auth-tabs button {
+  height: 42px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #617b88;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.iris-auth-tabs .iris-auth-active {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 112, 150, 0.8),
+      rgba(17, 169, 207, 0.7)
+    );
+
+  box-shadow:
+    0 0 20px
+    rgba(52, 210, 245, 0.08);
+}
+
+.iris-auth-form-animation {
+  animation:
+    irisAuthSwitch 0.45s ease forwards;
+}
+
+.iris-auth-input {
+  width: 100%;
+  height: 52px;
+
+  padding: 0 14px;
+
+  border:
+    1px solid
+    rgba(78, 151, 180, 0.25);
+
+  border-radius: 7px;
+
+  background:
+    rgba(3, 13, 21, 0.75);
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.iris-auth-input svg {
+  flex-shrink: 0;
+
+  color: #4a8399;
+}
+
+.iris-auth-input input {
+  flex: 1;
+
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: white;
+}
+
+.iris-auth-input button {
+  border: none;
+
+  background: transparent;
+
+  color: #718894;
+
+  display: flex;
+  align-items: center;
+}
+
+.iris-auth-input:focus-within {
+  border-color: #37cce9;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(55, 204, 233, 0.07);
+}
+
+.signup-card-active {
+  max-width: 500px;
+}
+
+@keyframes irisAuthSwitch {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(12px)
+      scale(0.98);
+
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter: blur(0);
+  }
+}
+
+body.light-theme .iris-auth-tabs {
+  background:
+    rgba(235, 244, 248, 0.8);
+
+  border-color:
+    rgba(64, 150, 180, 0.2);
+}
+
+body.light-theme .iris-auth-input {
+  background:
+    rgba(255, 255, 255, 0.75);
+
+  border-color: #d4e1e8;
+}
+
+body.light-theme .iris-auth-input input {
+  color: #172033;
+}
+/* =========================================
+   IRIS LIVE RECOGNITION ANIMATION
+========================================= */
+
+.iris-live-page {
+  min-height: 100vh;
+  background: #01070d;
+  color: white;
+}
+
+.iris-live-header {
+  height: 85px;
+  padding: 0 45px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  border-bottom:
+    1px solid rgba(55, 205, 245, 0.12);
+
+  background: rgba(3, 13, 21, 0.92);
+}
+
+.iris-live-header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.iris-live-header p {
+  margin: 5px 0 0;
+  color: #718895;
+  font-size: 11px;
+}
+
+.iris-back-button {
+  width: 42px;
+  height: 42px;
+
+  border:
+    1px solid rgba(55, 205, 245, 0.15);
+
+  border-radius: 8px;
+
+  background: #071521;
+  color: #8fa6b2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iris-live-status {
+  margin-left: auto;
+
+  color: #ff5b5b;
+
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iris-live-status span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ff4b4b;
+
+  box-shadow: 0 0 10px #ff4b4b;
+
+  animation: liveStatusPulse 1.4s infinite;
+}
+
+.iris-camera-workspace {
+  min-height: calc(100vh - 85px);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    360px;
+}
+
+.iris-camera-feed {
+  position: relative;
+
+  min-height: 650px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(12, 77, 99, 0.28),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #06111a,
+      #02070c
+    );
+}
+
+.iris-camera-placeholder {
+  color: #244555;
+
+  text-align: center;
+}
+
+.iris-camera-placeholder svg {
+  opacity: 0.35;
+}
+
+.iris-camera-placeholder p {
+  margin: 15px 0 5px;
+
+  font-size: 11px;
+  letter-spacing: 4px;
+}
+
+.iris-camera-placeholder span {
+  font-size: 9px;
+}
+
+/* RECOGNITION BOX */
+
+.recognition-box {
+  position: absolute;
+
+  width: 280px;
+  height: 390px;
+
+  border: 2px dashed #3fdcff;
+
+  transition:
+    border-color 0.25s ease,
+    border-style 0.25s ease,
+    box-shadow 0.25s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* KNOWN PERSON */
+
+.recognition-known {
+  border-color: #39dc8b;
+
+  box-shadow:
+    0 0 25px rgba(57, 220, 139, 0.08);
+
+  animation: knownBoxPulse 0.48s ease;
+}
+
+/* UNKNOWN PERSON */
+
+.recognition-unknown {
+  border-style: solid;
+
+  border-color: #f3a83b;
+
+  box-shadow:
+    0 0 28px rgba(243, 168, 59, 0.14);
+
+  animation: unknownBoxShock 0.3s ease;
+}
+
+/* CORNERS */
+
+.recognition-corner {
+  position: absolute;
+
+  width: 28px;
+  height: 28px;
+
+  transition: border-color 0.25s ease;
+}
+
+.corner-one {
+  left: -5px;
+  top: -5px;
+
+  border-left: 3px solid;
+  border-top: 3px solid;
+}
+
+.corner-two {
+  right: -5px;
+  top: -5px;
+
+  border-right: 3px solid;
+  border-top: 3px solid;
+}
+
+.corner-three {
+  left: -5px;
+  bottom: -5px;
+
+  border-left: 3px solid;
+  border-bottom: 3px solid;
+}
+
+.corner-four {
+  right: -5px;
+  bottom: -5px;
+
+  border-right: 3px solid;
+  border-bottom: 3px solid;
+}
+
+.recognition-known .recognition-corner {
+  border-color: #39dc8b;
+}
+
+.recognition-unknown .recognition-corner {
+  border-color: #f3a83b;
+}
+
+/* SCAN */
+
+.recognition-scan-line {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: #43dfff;
+
+  box-shadow:
+    0 0 12px #43dfff;
+
+  animation:
+    recognitionScan 2.3s ease-in-out infinite;
+}
+
+.recognition-unknown .recognition-scan-line {
+  background: #f3a83b;
+
+  box-shadow:
+    0 0 12px #f3a83b;
+
+  animation-duration: 0.8s;
+}
+
+/* IRIS EYE */
+
+.iris-recognition-eye {
+  width: 125px;
+  height: 72px;
+
+  border:
+    2px solid #45dfff;
+
+  border-radius:
+    80% 10% 80% 10%;
+
+  transform: rotate(45deg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.recognition-iris {
+  width: 53px;
+  height: 53px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #00151e 15%,
+      #3ddfff 20%,
+      #087b9e 58%,
+      #03141c 70%
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.recognition-pupil {
+  width: 19px;
+  height: 19px;
+
+  border-radius: 50%;
+
+  background: #00070b;
+
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    box-shadow 0.2s ease;
+}
+
+/* KNOWN EYE */
+
+.recognition-known .iris-recognition-eye {
+  border-color: #39dc8b;
+
+  box-shadow:
+    0 0 20px rgba(57, 220, 139, 0.16);
+}
+
+.recognition-known .recognition-iris {
+  background:
+    radial-gradient(
+      circle,
+      #00150d 15%,
+      #48e99b 20%,
+      #168c5b 58%,
+      #03170f 70%
+    );
+}
+
+/* UNKNOWN EYE STARTLE */
+
+.recognition-unknown .iris-recognition-eye {
+  border-color: #f3a83b;
+
+  box-shadow:
+    0 0 25px rgba(243, 168, 59, 0.22);
+
+  animation:
+    startledEye 0.32s ease;
+}
+
+.recognition-unknown .recognition-iris {
+  background:
+    radial-gradient(
+      circle,
+      #170b00 15%,
+      #ffc45e 20%,
+      #b96d0b 58%,
+      #1a0c02 70%
+    );
+
+  animation:
+    irisConstrict 0.32s ease forwards;
+}
+
+.recognition-unknown .recognition-pupil {
+  width: 8px;
+  height: 8px;
+
+  box-shadow:
+    0 0 10px #f3a83b;
+}
+
+/* RESULT */
+
+.recognition-result {
+  position: absolute;
+
+  left: -2px;
+  bottom: -70px;
+
+  width: calc(100% + 4px);
+
+  padding: 13px 15px;
+
+  border-radius: 5px;
+
+  background: rgba(3, 13, 21, 0.95);
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recognition-result strong {
+  display: block;
+
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.recognition-result small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #718895;
+
+  font-size: 9px;
+}
+
+/* FRIENDLY CHECK */
+
+.known-check-animation {
+  width: 39px;
+  height: 39px;
+
+  border-radius: 50%;
+
+  background: rgba(57, 220, 139, 0.13);
+
+  color: #43e598;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation:
+    friendlyCheckMorph 0.45s
+    cubic-bezier(0.2, 1.5, 0.4, 1);
+}
+
+/* UNKNOWN ICON */
+
+.unknown-alert-animation {
+  width: 39px;
+  height: 39px;
+
+  border-radius: 50%;
+
+  background: rgba(243, 168, 59, 0.12);
+
+  color: #f3a83b;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation:
+    unknownAlertPop 0.3s ease;
+}
+
+/* SIDE PANEL */
+
+.iris-recognition-panel {
+  padding: 55px 35px;
+
+  border-left:
+    1px solid rgba(55, 205, 245, 0.1);
+
+  background: #04101a;
+}
+
+.recognition-panel-label {
+  color: #42d9ff;
+
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.iris-recognition-panel h2 {
+  margin: 18px 0 12px;
+
+  font-size: 27px;
+}
+
+.iris-recognition-panel > p {
+  color: #718895;
+
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.iris-state-card {
+  margin-top: 35px;
+
+  padding: 20px;
+
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.state-card-known {
+  border:
+    1px solid rgba(57, 220, 139, 0.18);
+
+  background:
+    rgba(57, 220, 139, 0.06);
+
+  color: #43e598;
+}
+
+.state-card-unknown {
+  border:
+    1px solid rgba(243, 168, 59, 0.22);
+
+  background:
+    rgba(243, 168, 59, 0.07);
+
+  color: #f3a83b;
+}
+
+.iris-state-card strong {
+  display: block;
+
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.iris-state-card span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #718895;
+
+  font-size: 9px;
+}
+
+.recognition-data {
+  margin-top: 35px;
+}
+
+.recognition-data div {
+  padding: 18px 0;
+
+  border-bottom:
+    1px solid rgba(100, 150, 170, 0.1);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.recognition-data span {
+  color: #667f8c;
+
+  font-size: 10px;
+}
+
+.recognition-data strong {
+  font-size: 10px;
+}
+
+.camera-hud {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  color: rgba(66, 217, 255, 0.4);
+
+  font-family: monospace;
+  font-size: 8px;
+}
+
+.camera-hud-left {
+  left: 25px;
+  top: 25px;
+}
+
+.camera-hud-right {
+  right: 25px;
+  top: 25px;
+
+  text-align: right;
+}
+
+/* ANIMATIONS */
+
+@keyframes friendlyCheckMorph {
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.2)
+      rotate(-40deg);
+  }
+
+  65% {
+    transform:
+      scale(1.18)
+      rotate(5deg);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
+@keyframes knownBoxPulse {
+  0% {
+    box-shadow:
+      0 0 0 rgba(57, 220, 139, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 38px rgba(57, 220, 139, 0.28);
+  }
+
+  100% {
+    box-shadow:
+      0 0 25px rgba(57, 220, 139, 0.08);
+  }
+}
+
+@keyframes startledEye {
+  0% {
+    transform:
+      rotate(45deg)
+      scale(1);
+  }
+
+  35% {
+    transform:
+      rotate(45deg)
+      scale(1.15);
+  }
+
+  100% {
+    transform:
+      rotate(45deg)
+      scale(1);
+  }
+}
+
+@keyframes irisConstrict {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.18);
+  }
+
+  100% {
+    transform: scale(0.82);
+  }
+}
+
+@keyframes unknownBoxShock {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-4px);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
+
+  75% {
+    transform: translateX(-2px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes unknownAlertPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  70% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes recognitionScan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes liveStatusPulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 850px) {
+  .iris-camera-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .iris-recognition-panel {
+    border-left: none;
+
+    border-top:
+      1px solid rgba(55, 205, 245, 0.1);
+  }
+
+  .iris-camera-feed {
+    min-height: 600px;
+  }
+}

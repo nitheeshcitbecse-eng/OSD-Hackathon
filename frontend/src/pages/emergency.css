@@ -1,0 +1,787 @@
+.iris-emergency-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 35% 45%, rgba(220, 30, 40, 0.12), transparent 38%),
+    #01070d;
+  color: #ffffff;
+}
+
+.emergency-red-glow {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  left: 8%;
+  top: 15%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 40, 50, 0.12),
+    transparent 65%
+  );
+  pointer-events: none;
+  animation: emergencyAmbient 4s ease-in-out infinite;
+}
+
+.emergency-scan-overlay {
+  position: fixed;
+  left: 0;
+  top: -150px;
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+  background: linear-gradient(
+    transparent,
+    rgba(255, 50, 50, 0.04),
+    rgba(255, 50, 50, 0.09),
+    transparent
+  );
+  animation: emergencyScan 6s linear infinite;
+}
+
+.emergency-web-header {
+  height: 85px;
+  padding: 0 45px;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 70, 70, 0.14);
+  background: rgba(3, 11, 18, 0.94);
+}
+
+.emergency-web-header h1 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.emergency-web-header p {
+  margin: 5px 0 0;
+  color: #718895;
+  font-size: 11px;
+}
+
+.emergency-system-live {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #ff6262;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.emergency-system-live span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff4545;
+  box-shadow: 0 0 12px #ff4545;
+  animation: emergencyBlink 1s infinite;
+}
+
+.emergency-web-content {
+  min-height: calc(100vh - 85px);
+  padding: 40px;
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(500px, 1.2fr) minmax(390px, 0.8fr);
+  gap: 25px;
+}
+
+.emergency-main-panel,
+.emergency-actions-panel {
+  border: 1px solid rgba(255, 70, 70, 0.14);
+  border-radius: 15px;
+  background: rgba(5, 15, 24, 0.86);
+  backdrop-filter: blur(15px);
+}
+
+.emergency-main-panel {
+  padding: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.emergency-alert-status {
+  padding: 9px 16px;
+  border: 1px solid rgba(255, 70, 70, 0.2);
+  border-radius: 30px;
+  background: rgba(255, 50, 50, 0.07);
+  color: #ff6868;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  animation: emergencyStatusGlow 2s ease-in-out infinite;
+}
+
+.emergency-core-wrapper {
+  width: 300px;
+  height: 300px;
+  margin: 25px 0 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emergency-wave {
+  position: absolute;
+  width: 165px;
+  height: 165px;
+  border: 1px solid rgba(255, 65, 65, 0.55);
+  border-radius: 50%;
+  animation: emergencyWave 2.5s ease-out infinite;
+}
+
+.wave-two {
+  animation-delay: 0.8s;
+}
+
+.wave-three {
+  animation-delay: 1.6s;
+}
+
+.emergency-rotating-ring {
+  position: absolute;
+  width: 225px;
+  height: 225px;
+  border-radius: 50%;
+  border-top: 2px solid #ff4c4c;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid rgba(255, 70, 70, 0.25);
+  border-left: 1px solid transparent;
+  animation: emergencyRotate 4s linear infinite;
+}
+
+.emergency-core-button {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  z-index: 5;
+  border: 2px solid rgba(255, 130, 130, 0.6);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 28%,
+    #ff5a5a,
+    #db252c 48%,
+    #99131a
+  );
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow:
+    0 0 35px rgba(255, 40, 50, 0.32),
+    inset 0 0 25px rgba(255, 255, 255, 0.09);
+  animation: emergencyHeartbeat 1.8s ease-in-out infinite;
+}
+
+.emergency-core-button:hover {
+  box-shadow:
+    0 0 65px rgba(255, 40, 50, 0.5),
+    inset 0 0 25px rgba(255, 255, 255, 0.12);
+}
+
+.emergency-core-button svg {
+  margin-bottom: 10px;
+  animation: emergencySiren 2.8s ease-in-out infinite;
+}
+
+.emergency-core-button strong {
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.emergency-core-button span {
+  margin-top: 7px;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.emergency-main-panel h2 {
+  margin: 5px 0 10px;
+  font-size: 27px;
+}
+
+.emergency-description {
+  max-width: 470px;
+  color: #718895;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.emergency-security-line {
+  margin-top: 20px;
+  color: #667e8b;
+  font-size: 8px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.emergency-security-line span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #39dc8b;
+  box-shadow: 0 0 9px #39dc8b;
+  animation: emergencyBlink 1.5s infinite;
+}
+
+.emergency-actions-panel {
+  padding: 35px;
+}
+
+.emergency-actions-panel h2 {
+  margin: 0 0 25px;
+  font-size: 21px;
+}
+
+.emergency-action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.emergency-action-card {
+  min-height: 155px;
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px solid rgba(90, 150, 180, 0.16);
+  border-radius: 11px;
+  background: rgba(7, 22, 34, 0.9);
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.emergency-action-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(60, 210, 245, 0.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+.emergency-action-card::before {
+  content: "";
+  position: absolute;
+  width: 45%;
+  height: 200%;
+  top: -50%;
+  left: -100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transform: rotate(20deg);
+  transition: left 0.7s ease;
+}
+
+.emergency-action-card:hover::before {
+  left: 160%;
+}
+
+.emergency-action-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  border-radius: 11px;
+  background: rgba(55, 210, 245, 0.08);
+  color: #48d8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emergency-action-card strong {
+  display: block;
+  position: relative;
+  z-index: 2;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.emergency-action-card > span {
+  display: block;
+  position: relative;
+  z-index: 2;
+  margin-top: 7px;
+  color: #718895;
+  font-size: 9px;
+}
+
+.police-action .emergency-action-icon {
+  color: #ff5a5a;
+  background: rgba(255, 70, 70, 0.09);
+  animation: emergencyPhonePulse 1.6s ease-in-out infinite;
+}
+
+.siren-action .emergency-action-icon {
+  color: #ff5a5a;
+  background: rgba(255, 70, 70, 0.09);
+  animation: emergencySiren 2.8s ease-in-out infinite;
+}
+
+.emergency-response-status {
+  margin-top: 25px;
+  padding: 18px;
+  border: 1px solid rgba(57, 220, 139, 0.14);
+  border-radius: 10px;
+  background: rgba(57, 220, 139, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.response-status-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #39dc8b;
+  box-shadow: 0 0 12px #39dc8b;
+  animation: emergencyNetwork 1.4s infinite;
+}
+
+.emergency-response-status strong {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.emergency-response-status p {
+  margin: 5px 0 0;
+  color: #657c88;
+  font-size: 9px;
+}
+
+/* CALLING SCREEN */
+
+.iris-calling-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999 !important;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(170, 15, 25, 0.4), transparent 45%),
+    rgba(1, 5, 9, 0.99);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  animation: callingEnter 0.4s ease forwards;
+}
+
+.calling-background-pulse {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 45, 45, 0.14),
+    transparent 65%
+  );
+  animation: callingPulse 2s ease-in-out infinite;
+}
+
+.calling-scan-line {
+  position: absolute;
+  left: 0;
+  top: -120px;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(
+    transparent,
+    rgba(255, 60, 60, 0.04),
+    rgba(255, 60, 60, 0.1),
+    transparent
+  );
+  animation: callingScan 3s linear infinite;
+}
+
+.calling-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  animation: callingContent 0.5s ease forwards;
+}
+
+.calling-status-text {
+  margin-bottom: 25px;
+  color: #ff6666;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+.calling-phone-animation {
+  width: 210px;
+  height: 210px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.call-wave {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(255, 70, 70, 0.7);
+  border-radius: 50%;
+  animation: callWave 2.2s ease-out infinite;
+}
+
+.call-wave-two {
+  animation-delay: 0.7s;
+}
+
+.call-wave-three {
+  animation-delay: 1.4s;
+}
+
+.calling-phone-core {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  z-index: 5;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff5050, #bd171d);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 45px rgba(255, 50, 50, 0.45);
+  animation: callingPhone 1.7s ease-in-out infinite;
+}
+
+.calling-content h1 {
+  margin: 20px 0 5px;
+  color: #ffffff;
+  font-size: 38px;
+  letter-spacing: 7px;
+  text-shadow: 0 0 22px rgba(255, 65, 65, 0.5);
+}
+
+.calling-dots {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.calling-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff6565;
+  animation: callingDot 1.2s ease-in-out infinite;
+}
+
+.calling-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.calling-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.calling-content > p {
+  color: #778b96;
+  font-size: 11px;
+}
+
+.call-timer {
+  display: block;
+  margin: 20px 0;
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 25px;
+  letter-spacing: 4px;
+}
+
+.calling-data {
+  margin: 20px 0 30px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.calling-data span {
+  color: #58717e;
+  font-size: 7px;
+  letter-spacing: 1.5px;
+}
+
+.end-emergency-call {
+  min-width: 190px;
+  height: 55px;
+  border: none;
+  border-radius: 30px;
+  background: #d9272d;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.end-emergency-call:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(255, 50, 50, 0.4);
+}
+
+/* ANIMATIONS */
+
+@keyframes emergencyAmbient {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes emergencyScan {
+  from {
+    top: -150px;
+  }
+
+  to {
+    top: 100vh;
+  }
+}
+
+@keyframes emergencyBlink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes emergencyStatusGlow {
+  50% {
+    box-shadow: 0 0 25px rgba(255, 60, 60, 0.15);
+  }
+}
+
+@keyframes emergencyWave {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes emergencyRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes emergencyHeartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.06);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.04);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes emergencySiren {
+  0%,
+  88%,
+  100% {
+    transform: rotate(0);
+  }
+
+  91% {
+    transform: rotate(12deg);
+  }
+
+  94% {
+    transform: rotate(-12deg);
+  }
+
+  97% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes emergencyPhonePulse {
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 22px rgba(255, 65, 65, 0.18);
+  }
+}
+
+@keyframes emergencyNetwork {
+  50% {
+    transform: scale(1.5);
+    opacity: 0.45;
+  }
+}
+
+@keyframes callingEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes callingContent {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes callingPulse {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes callWave {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes callingPhone {
+  0%,
+  72%,
+  100% {
+    transform: rotate(0) scale(1);
+  }
+
+  78% {
+    transform: rotate(9deg) scale(1.06);
+  }
+
+  84% {
+    transform: rotate(-9deg) scale(1.06);
+  }
+
+  90% {
+    transform: rotate(6deg);
+  }
+
+  96% {
+    transform: rotate(-6deg);
+  }
+}
+
+@keyframes callingDot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+@keyframes callingScan {
+  from {
+    top: -120px;
+  }
+
+  to {
+    top: 100vh;
+  }
+}
+
+@media (max-width: 900px) {
+  .emergency-web-content {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .calling-data {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
