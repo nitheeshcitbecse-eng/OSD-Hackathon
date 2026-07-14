@@ -5,8 +5,19 @@ import socketio
 from config import settings
 from database import init_db, db_helper
 
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
+    if db_helper.client:
+        db_helper.client.close()
+        print("MongoDB connection closed.")
+
 # Create a FastAPI App
-app = FastAPI(title="OSD Hackathon Security API")
+app = FastAPI(title="OSD Hackathon Security API", lifespan=lifespan)
+
 
 # Configure CORS for FastAPI
 app.add_middleware(
@@ -24,16 +35,7 @@ sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='*')
 # This automatically mounts Socket.io's handler on /socket.io/
 socket_app = socketio.ASGIApp(sio, other_asgi_app=app)
 
-# Database startup/shutdown events
-@app.on_event("startup")
-async def startup_db_client():
-    init_db()
 
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    if db_helper.client:
-        db_helper.client.close()
-        print("MongoDB connection closed.")
 
 # Socket.io connection handlers
 @sio.event
