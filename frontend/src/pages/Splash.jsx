@@ -1,30 +1,35 @@
-import "../styles/Splash.css";
-import { useNavigate } from "react-router-dom";
+import { Shield, Eye } from "lucide-react";
 
-function Splash() {
-    const navigate = useNavigate();
+function Splash({ onFinish }) {
   return (
-    <div className="splash-container">
+    <div className="mobile-screen splash-screen">
+      <div className="logo-box">
+        <div className="shield-logo">
+          <Shield size={100} strokeWidth={1.8} />
+          <Eye className="eye-icon" size={45} />
+        </div>
 
-      <div className="logo-circle">
-        🛡️
+        <h1>AI GUARDIAN</h1>
+
+        <p>
+          Intelligent Intrusion Detection &<br />
+          Emergency Response
+        </p>
       </div>
 
-      <h1 className="title">
-        AI Guardian
-      </h1>
+      <div className="splash-bottom">
+        <p>Your Safety, Our Priority</p>
 
-      <p className="subtitle">
-        Protecting Your Loved Ones
-      </p>
+        <div className="loading-bar">
+          <div className="loading-progress"></div>
+        </div>
 
-      <button
-  className="start-btn"
-  onClick={() => navigate("/login")}
->
-        Get Started
-      </button>
+        <span>Loading...</span>
 
+        <button className="continue-btn" onClick={onFinish}>
+          Continue
+        </button>
+      </div>
     </div>
   );
 }
