@@ -1,0 +1,82 @@
+camera:
+  source: 0
+  inference_width: 640
+  inference_height: 480
+  reconnect_attempts: 5
+  reconnect_delay_seconds: 1
+
+detection:
+  model: "yolo11n.pt"
+  confidence_threshold: 0.50
+  person_class_id: 0
+  tracker: "bytetrack.yaml"
+  detection_frame_interval: 1
+
+face:
+  provider: "insightface"
+  model_name: "buffalo_l"
+  detection_size: [640, 640]
+  recognition_interval_frames: 5
+  authorized_threshold: 0.50
+  uncertain_threshold: 0.35
+  identity_history_window: 10
+  stable_identity_min_votes: 5
+
+temporal:
+  stale_track_timeout_seconds: 5
+  max_position_history: 120
+  max_identity_history: 20
+  max_risk_history: 50
+
+behavior:
+  prolonged_presence_seconds: 15
+  loitering_seconds: 20
+  stationary_seconds: 10
+  stationary_distance_threshold: 35
+  repeated_movement_window: 30
+  face_obscured_min_consecutive_frames: 15
+  face_missing_ratio_threshold: 0.70
+
+context:
+  restricted_hours:
+    start: "23:00"
+    end: "05:00"
+  night_mode: true
+  camera_zone: "ENTRANCE"
+  sensitivity_multiplier: 1.0
+
+threat:
+  normal_max_score: 39
+  suspicious_max_score: 69
+  weights:
+    persistent_unknown_identity: 25
+    identity_uncertainty: 8
+    prolonged_presence: 10
+    loitering: 20
+    repeated_movement: 8
+    persistent_face_obscuration: 15
+    restricted_hours: 10
+    suspicious_object: 35
+    multi_signal_correlation: 12
+  authorized_risk_reduction: 50
+
+events:
+  critical_alert_cooldown_seconds: 60
+  resolution_timeout_seconds: 10
+
+evidence:
+  suspicious_buffer_size: 60
+  critical_output_directory: "outputs/alerts"
+  retention_hours: 24
+
+backend:
+  alert_url: "http://localhost:8000/api/alerts/trigger"
+  timeout_seconds: 5
+  max_retries: 3
+  retry_backoff_seconds: 2
+  retry_queue_directory: "data/retry_queue"
+
+debug:
+  show_preview: true
+  show_fps: true
+  show_signal_overlay: true
