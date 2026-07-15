@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { api } from "../api";
 
 import {
   Eye,
@@ -15,17 +16,40 @@ import SecurityBackground from "../components/SecurityBackground";
 function Login({ onLogin }) {
   const [authMode, setAuthMode] = useState("login");
   const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError("");
+    setLoading(true);
 
-    if (authMode === "signup") {
-      setAuthMode("login");
-      return;
+    try {
+      if (authMode === "signup") {
+        if (password !== confirmPassword) {
+          throw new Error("Passwords do not match");
+        }
+        const data = await api.auth.signup(name, email, password);
+        localStorage.setItem("iris_token", data.token);
+        localStorage.setItem("iris_user", JSON.stringify(data.user));
+        onLogin(data.user);
+      } else {
+        const data = await api.auth.login(email, password);
+        localStorage.setItem("iris_token", data.token);
+        localStorage.setItem("iris_user", JSON.stringify(data.user));
+        onLogin(data.user);
+      }
+    } catch (err) {
+      setError(err.message || "Authentication failed");
+    } finally {
+      setLoading(false);
     }
-
-    onLogin();
   };
+
 
   return (
     <div className="iris-login-page">
@@ -129,6 +153,12 @@ function Login({ onLogin }) {
               </p>
             </div>
 
+            {error && (
+              <div className="iris-error-banner" style={{ color: "#ff4a4a", fontSize: "14px", marginBottom: "15px", textAlign: "center", fontWeight: "bold" }}>
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit}>
               {authMode === "signup" && (
                 <>
@@ -140,6 +170,8 @@ function Login({ onLogin }) {
                     <input
                       type="text"
                       placeholder="Enter your full name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       required
                     />
                   </div>
@@ -154,6 +186,8 @@ function Login({ onLogin }) {
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -170,6 +204,8 @@ function Login({ onLogin }) {
                       : "password"
                   }
                   placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
 
@@ -197,6 +233,8 @@ function Login({ onLogin }) {
                     <input
                       type="password"
                       placeholder="Confirm your password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       required
                     />
                   </div>
@@ -219,9 +257,12 @@ function Login({ onLogin }) {
               <button
                 type="submit"
                 className="iris-login-button"
+                disabled={loading}
               >
                 <span>
-                  {authMode === "login"
+                  {loading
+                    ? "Processing..."
+                    : authMode === "login"
                     ? "Access IRIS"
                     : "Create IRIS Account"}
                 </span>

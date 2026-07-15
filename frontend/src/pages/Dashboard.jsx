@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { api } from "../api";
 import {
   ShieldCheck,
   Camera,
@@ -16,6 +18,44 @@ import {
 } from "lucide-react";
 
 function Dashboard({ setScreen }) {
+  const [alerts, setAlerts] = useState([]);
+  const [settings, setSettings] = useState(null);
+  const [user, setUser] = useState({ name: "Nitheesh S", email: "" });
+
+  useEffect(() => {
+    // Get user details
+    const savedUser = localStorage.getItem("iris_user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+
+    // Fetch alerts & settings
+    const loadData = async () => {
+      try {
+        const fetchedAlerts = await api.alerts.getAll();
+        setAlerts(fetchedAlerts);
+      } catch (err) {
+        console.error("Failed to load alerts:", err);
+      }
+      try {
+        const fetchedSettings = await api.settings.get();
+        setSettings(fetchedSettings);
+      } catch (err) {
+        console.error("Failed to load settings:", err);
+      }
+    };
+    loadData();
+  }, []);
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("iris_token");
+    localStorage.removeItem("iris_user");
+    setScreen("login");
+  };
+
+  const activeAlerts = alerts.filter(a => !a.resolved);
+  const isSecure = activeAlerts.length === 0;
+
   return (
     <div className="website-dashboard">
 
@@ -73,13 +113,14 @@ function Dashboard({ setScreen }) {
           <UserCircle size={40} />
 
           <div>
-            <strong>Nitheesh S</strong>
+            <strong>{user.name}</strong>
             <span>Premium User</span>
           </div>
 
           <LogOut
             size={19}
-            onClick={() => setScreen("login")}
+            style={{ cursor: "pointer" }}
+            onClick={handleLogoutClick}
           />
 
         </div>
@@ -113,7 +154,7 @@ function Dashboard({ setScreen }) {
               onClick={() => setScreen("profile")}
             >
               <UserCircle size={23} />
-              Nitheesh S
+              {user.name}
             </button>
 
           </div>
@@ -125,15 +166,15 @@ function Dashboard({ setScreen }) {
 
           <div className="website-status-grid">
 
-            <div className="web-status-card secure-web-card">
+            <div className={`web-status-card ${isSecure ? 'secure-web-card' : ''}`} style={!isSecure ? { background: 'linear-gradient(135deg, rgba(255, 74, 74, 0.2) 0%, rgba(20, 20, 25, 0.9) 100%)', border: '1px solid #ff4a4a' } : {}}>
 
               <div>
                 <span>SECURITY STATUS</span>
-                <h2>Home Secure</h2>
-                <p>All systems are active</p>
+                <h2>{isSecure ? "Home Secure" : "Breach Alert"}</h2>
+                <p>{isSecure ? "All systems are active" : `${activeAlerts.length} unresolved issue(s)`}</p>
               </div>
 
-              <ShieldCheck size={55} />
+              <ShieldCheck size={55} style={!isSecure ? { color: '#ff4a4a' } : {}} />
 
             </div>
 
@@ -145,7 +186,7 @@ function Dashboard({ setScreen }) {
                 <h2 className="green-text">
                   Running
                 </h2>
-                <p>Real-time monitoring active</p>
+                <p>Sensitivity: {settings?.alertSensitivity || 80}%</p>
               </div>
 
               <Activity
@@ -164,7 +205,7 @@ function Dashboard({ setScreen }) {
               <div>
                 <span>CONNECTED CAMERAS</span>
                 <h2>3 Cameras</h2>
-                <p>All cameras active</p>
+                <p>All feeds active</p>
               </div>
 
               <Camera
@@ -198,68 +239,45 @@ function Dashboard({ setScreen }) {
 
               </div>
 
-
-              <div
-                className="web-alert-row"
-                onClick={() => setScreen("critical")}
-              >
-
-                <div className="web-alert-image">
-                  👤
+              {alerts.length === 0 ? (
+                <div style={{ padding: "30px", textAlign: "center", color: "#8a8f98" }}>
+                  No security alerts detected.
                 </div>
+              ) : (
+                alerts.slice(0, 3).map((alert) => (
+                  <div
+                    key={alert.id}
+                    className="web-alert-row"
+                    onClick={() => {
+                      if (alert.riskLevel === 'critical') {
+                        setScreen("critical");
+                      } else {
+                        setScreen("alerts");
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="web-alert-image" style={{ width: "40px", height: "40px", borderRadius: "8px", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", background: "#1c1d24" }}>
+                      {alert.imageUrl ? (
+                        <img src={alert.imageUrl} alt="Alert" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      ) : (
+                        alert.riskLevel === "critical" ? "🚨" : "👤"
+                      )}
+                    </div>
 
-                <div className="web-alert-info">
-                  <h3>Unknown Person</h3>
-                  <p>Front Door</p>
-                </div>
+                    <div className="web-alert-info">
+                      <h3>{alert.riskLevel === "critical" ? "Critical Intrusion" : "Person Detected"}</h3>
+                      <p>{alert.location || "Monitored Area"}</p>
+                    </div>
 
-                <span>Today, 10:42 PM</span>
+                    <span>{new Date(alert.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
 
-                <strong className="web-high">
-                  High
-                </strong>
-
-              </div>
-
-
-              <div className="web-alert-row">
-
-                <div className="web-alert-image">
-                  🌙
-                </div>
-
-                <div className="web-alert-info">
-                  <h3>Suspicious Activity</h3>
-                  <p>Backyard</p>
-                </div>
-
-                <span>Today, 09:15 PM</span>
-
-                <strong className="web-medium">
-                  Medium
-                </strong>
-
-              </div>
-
-
-              <div className="web-alert-row">
-
-                <div className="web-alert-image">
-                  📷
-                </div>
-
-                <div className="web-alert-info">
-                  <h3>Motion Detected</h3>
-                  <p>Living Room</p>
-                </div>
-
-                <span>Today, 08:45 PM</span>
-
-                <strong className="web-low">
-                  Low
-                </strong>
-
-              </div>
+                    <strong className={`web-${alert.riskLevel || 'medium'}`} style={{ textTransform: "capitalize" }}>
+                      {alert.riskLevel}
+                    </strong>
+                  </div>
+                ))
+              )}
 
             </section>
 

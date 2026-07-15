@@ -13,11 +13,22 @@ import EmergencyContacts from "./pages/EmergencyContacts";
 import SettingsPage from "./pages/SettingsPage";
 import Profile from "./pages/Profile";
 
+import { useEffect } from "react";
+
 function App() {
   const [screen, setScreen] = useState("splash");
+  const [user, setUser] = useState(null);
 
   const [previousScreen, setPreviousScreen] =
     useState("dashboard");
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("iris_user");
+    const token = localStorage.getItem("iris_token");
+    if (savedUser && token) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
 
   const navigateTo = (newScreen) => {
     setPreviousScreen(screen);
@@ -28,17 +39,36 @@ function App() {
     setScreen(previousScreen);
   };
 
+  const handleLogin = (userData) => {
+    setUser(userData);
+    setScreen("dashboard");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("iris_token");
+    localStorage.removeItem("iris_user");
+    setUser(null);
+    setScreen("login");
+  };
+
   return (
     <>
       {screen === "splash" && (
         <Splash
-          onFinish={() => setScreen("login")}
+          onFinish={() => {
+            const token = localStorage.getItem("iris_token");
+            if (token) {
+              setScreen("dashboard");
+            } else {
+              setScreen("login");
+            }
+          }}
         />
       )}
 
       {screen === "login" && (
         <Login
-          onLogin={() => setScreen("dashboard")}
+          onLogin={handleLogin}
         />
       )}
 

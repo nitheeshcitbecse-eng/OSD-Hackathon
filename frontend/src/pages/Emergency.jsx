@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Emergency.css";
+import { api } from "../api";
 import {
   ArrowLeft,
   Phone,
@@ -35,9 +36,40 @@ function Emergency({ setScreen, goBack }) {
     ).padStart(2, "0")}`;
   };
 
-  const startCall = () => {
+  const startCall = async () => {
     setCallTime(0);
     setCalling(true);
+    try {
+      // Get current position if browser supports it
+      let lat = 12.9716; // default Bangalore coordinates for simulator
+      let lon = 77.5946;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            api.emergency.activate({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              triggeredBy: "IRIS Web Console",
+            });
+          },
+          (err) => {
+            api.emergency.activate({
+              latitude: lat,
+              longitude: lon,
+              triggeredBy: "IRIS Web Console (GPS Blocked)",
+            });
+          }
+        );
+      } else {
+        await api.emergency.activate({
+          latitude: lat,
+          longitude: lon,
+          triggeredBy: "IRIS Web Console (No GPS Support)",
+        });
+      }
+    } catch (err) {
+      console.error("Failed to activate emergency trigger:", err);
+    }
   };
 
   const endCall = () => {
