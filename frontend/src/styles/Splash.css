@@ -1,0 +1,44 @@
+.splash-container{
+    height:100vh;
+    background:linear-gradient(180deg,#0F172A,#1E293B);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.logo-circle{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#2563EB;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:55px;
+    margin-bottom:25px;
+}
+
+.title{
+    font-size:38px;
+    font-weight:700;
+}
+
+.subtitle{
+    color:#CBD5E1;
+    margin-top:10px;
+    font-size:18px;
+}
+
+.start-btn{
+    margin-top:40px;
+    padding:15px 40px;
+    border:none;
+    border-radius:15px;
+    background:#2563EB;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:600;
+}
