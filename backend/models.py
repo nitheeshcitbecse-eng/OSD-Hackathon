@@ -47,19 +47,23 @@ class AlertResponse(BaseModel):
 class ContactCreate(BaseModel):
     name: str
     phoneNumber: str
+    email: Optional[str] = None
     notifyOnCritical: Optional[bool] = True
 
 class ContactUpdate(BaseModel):
     name: Optional[str] = None
     phoneNumber: Optional[str] = None
+    email: Optional[str] = None
     notifyOnCritical: Optional[bool] = None
 
 class ContactResponse(BaseModel):
     id: str
     name: str
     phoneNumber: str
+    email: Optional[str] = None
     notifyOnCritical: bool
     createdAt: datetime
+
 
 # Face Models
 class FaceCreate(BaseModel):

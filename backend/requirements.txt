@@ -7,6 +7,8 @@ python-dotenv
 python-socketio
 PyJWT
 bcrypt
-twilio
 passlib
 email-validator
+cloudinary
+python-multipart
+

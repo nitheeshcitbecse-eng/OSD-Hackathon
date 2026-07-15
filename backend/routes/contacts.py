@@ -24,6 +24,7 @@ async def create_contact(payload: ContactCreate, db=Depends(get_db)):
         contact_doc = {
             "name": payload.name,
             "phoneNumber": payload.phoneNumber,
+            "email": payload.email,
             "notifyOnCritical": payload.notifyOnCritical,
             "createdAt": datetime.utcnow()
         }

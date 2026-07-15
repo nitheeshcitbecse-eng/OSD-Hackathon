@@ -6,6 +6,9 @@ import asyncio
 from database import get_db
 from config import settings
 from models import serialize_mongo_doc
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 router = APIRouter(prefix="/api/emergency", tags=["emergency"])
 
@@ -15,40 +18,43 @@ class EmergencyActivatePayload(BaseModel):
     longitude: Optional[float] = None
     triggeredBy: Optional[str] = None
 
-# Initialize Twilio client conditionally
-twilio_client = None
-if settings.TWILIO_ACCOUNT_SID and settings.TWILIO_AUTH_TOKEN:
-    try:
-        from twilio.rest import Client
-        twilio_client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-    except Exception as e:
-        print("Failed to initialize Twilio client:", e)
-
-async def send_sms_notifications(contacts, message_body):
-    if not twilio_client or not settings.TWILIO_PHONE_NUMBER:
-        print("Twilio is not fully configured. Simulating SMS delivery.")
+async def send_email_notifications(contacts, message_body):
+    if not settings.SMTP_USER or not settings.SMTP_PASSWORD:
+        print("SMTP is not fully configured. Simulating Email delivery.")
         for contact in contacts:
-            print(f"[SIMULATED SMS] To {contact.get('name')} ({contact.get('phoneNumber')}): {message_body}")
+            email = contact.get("email")
+            if email:
+                print(f"[SIMULATED EMAIL] To {contact.get('name')} ({email}): {message_body}")
         return
 
-    # Helper function to send single SMS safely
-    def send_one(to_number):
+    # Helper function to send single Email safely
+    def send_one(to_email, name):
         try:
-            message = twilio_client.messages.create(
-                body=message_body,
-                from_=settings.TWILIO_PHONE_NUMBER,
-                to=to_number
-            )
-            print(f"SMS Sent to {to_number}: {message.sid}")
+            msg = MIMEMultipart()
+            msg['From'] = settings.SMTP_USER
+            msg['To'] = to_email
+            msg['Subject'] = "CRITICAL ALERT: Emergency Triggered"
+            
+            body = f"Hello {name},\n\n{message_body}\n\nBest regards,\nAI Security Guardian"
+            msg.attach(MIMEText(body, 'plain'))
+            
+            # Connect to SMTP server
+            server = smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT)
+            server.starttls()
+            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+            text = msg.as_string()
+            server.sendmail(settings.SMTP_USER, to_email, text)
+            server.quit()
+            print(f"Email Sent to {to_email}")
         except Exception as err:
-            print(f"Error sending SMS to {to_number}: {err}")
+            print(f"Error sending Email to {to_email}: {err}")
 
-    # Run blocking Twilio client calls in executors/threads to prevent blocking the main event loop
+    # Run blocking SMTP calls in executors/threads
     loop = asyncio.get_running_loop()
     for contact in contacts:
-        phone = contact.get("phoneNumber")
-        if phone:
-            await loop.run_in_executor(None, send_one, phone)
+        email = contact.get("email")
+        if email:
+            await loop.run_in_executor(None, send_one, email, contact.get("name", "User"))
 
 @router.post("/activate")
 async def activate_emergency(
@@ -98,8 +104,8 @@ async def activate_emergency(
         maps_lon = longitude if longitude is not None else 0
         message_body = f"CRITICAL ALERT: Emergency triggered by {triggered_by}. Coordinates: https://www.google.com/maps/search/?api=1&query={maps_lat},{maps_lon}"
         
-        # 4. Schedule Twilio SMS alerts in the background task
-        background_tasks.add_task(send_sms_notifications, contacts, message_body)
+        # 4. Schedule Email alerts in the background task
+        background_tasks.add_task(send_email_notifications, contacts, message_body)
         
         return {
             "message": "Emergency activated. Contacts notified.",

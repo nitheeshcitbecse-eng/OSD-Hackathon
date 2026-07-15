@@ -58,6 +58,7 @@ from routes.contacts import router as contacts_router
 from routes.emergency import router as emergency_router
 from routes.faces import router as faces_router
 from routes.settings import router as settings_router
+from routes.upload import router as upload_router
 
 # Register routers
 app.include_router(auth_router)
@@ -66,6 +67,8 @@ app.include_router(contacts_router)
 app.include_router(emergency_router)
 app.include_router(faces_router)
 app.include_router(settings_router)
+app.include_router(upload_router)
+
 
 if __name__ == "__main__":
     uvicorn.run("main:socket_app", host="0.0.0.0", port=settings.PORT, reload=True)
